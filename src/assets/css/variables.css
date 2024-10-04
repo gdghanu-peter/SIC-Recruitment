@@ -1,0 +1,11 @@
+.font-bold {
+  font-weight: 700;
+}
+
+.text-hover-primary:hover {
+  color: var(--primary-color);
+}
+
+.text-signature {
+  font-family: 'Motherland';
+}

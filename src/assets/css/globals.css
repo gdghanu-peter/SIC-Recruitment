@@ -1,3 +1,28 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: 'Monserrat';
+  src: url('~/fonts/Montserrat-Bold.ttf');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'Monserrat';
+  src: url('~/fonts/Montserrat-Regular.ttf');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Motherland';
+  src: url('~/fonts/NVN-Motherland-Signature.ttf');
+  font-weight: 400;
+}
+
+* {
+  font-family: 'Monserrat';
+  font-weight: 400;
+
+  --primary-color: #C42B2F;
+}
