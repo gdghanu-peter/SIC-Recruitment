@@ -1,5 +1,7 @@
 <template>
-  <div class="w-screen">
-    <HomeBanner />
-  </div>
+  <HomeBanner />
+  <HomeStory />
+  <HomeDepartments />
+  <HomeEvents />
+  <HomeActivities />
 </template>
