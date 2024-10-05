@@ -38,7 +38,18 @@
 
 <script setup lang="ts">
 import { bttQuestionData } from '~/mocks/specific/btt'
+import { useChoice } from '~/stores/choice'
 import type { BttState } from '~/types/apply/specific/btt-state'
+import { useIds } from '~/stores/id'
+import { useRouter } from 'vue-router'
+
+const choiceStore = useChoice()
+
+const router = useRouter()
+
+const { bttForm } = useForm()
+
+const idStore = useIds()
 
 const state = reactive<BttState>({
   communicationRole: '',
@@ -47,8 +58,15 @@ const state = reactive<BttState>({
   messageInterpretation: ''
 })
 
-const handleSubmit = () => {
-  console.log(state)
+const handleSubmit = async () => {
+  await bttForm(state, idStore.id)
+  if (choiceStore.second === '') {
+    router.push('/apply/thankyou')
+  } else {
+    const secondChoice = choiceStore.second
+    choiceStore.setSecond('')
+    router.push(`/apply/specific/${secondChoice}`)
+  }
 }
 
 const handleChange = (value: any, name: keyof BttState) => {

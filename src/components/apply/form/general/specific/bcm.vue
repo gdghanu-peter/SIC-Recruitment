@@ -39,6 +39,12 @@
 <script setup lang="ts">
 import { bcmQuestionData } from '~/mocks/specific/bcm'
 import type { BcmState } from '~/types/apply/specific/bcm-state'
+import { useRouter } from 'vue-router'
+import { useChoice } from '~/stores/choice'
+
+const choiceStore = useChoice()
+
+const router = useRouter()
 
 const state = reactive<BcmState>({
   logicalThinking: '',
@@ -47,7 +53,13 @@ const state = reactive<BcmState>({
 })
 
 const handleSubmit = () => {
-  console.log(state)
+  if (choiceStore.second === '') {
+    router.push('/apply/thankyou')
+  } else {
+    const secondChoice = choiceStore.second
+    choiceStore.setSecond('')
+    router.push(`/apply/specific/${secondChoice}`)
+  }
 }
 
 const handleChange = (value: any, name: keyof BcmState) => {

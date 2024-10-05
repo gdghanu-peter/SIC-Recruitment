@@ -39,6 +39,12 @@
 <script setup lang="ts">
 import { bskQuestionData } from '~/mocks/specific/bsk'
 import type { BskState } from '~/types/apply/specific/bsk-state'
+import { useRouter } from 'vue-router'
+import { useChoice } from '~/stores/choice'
+
+const choiceStore = useChoice()
+
+const router = useRouter()
 
 const state = reactive<BskState>({
   eventPlanning: '',
@@ -49,7 +55,13 @@ const state = reactive<BskState>({
 })
 
 const handleSubmit = () => {
-  console.log(state)
+  if (choiceStore.second === '') {
+    router.push('/apply/thankyou')
+  } else {
+    const secondChoice = choiceStore.second
+    choiceStore.setSecond('')
+    router.push(`/apply/specific/${secondChoice}`)
+  }
 }
 
 const handleChange = (value: any, name: keyof BskState) => {

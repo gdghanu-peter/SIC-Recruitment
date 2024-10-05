@@ -1,7 +1,3 @@
 <template>
-  <HomeBanner />
-  <HomeStory />
-  <HomeDepartments />
-  <HomeEvents />
-  <HomeActivities />
+  <Apply />
 </template>

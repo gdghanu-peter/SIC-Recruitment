@@ -39,6 +39,12 @@
 <script setup lang="ts">
 import { bnsQuestionData } from '~/mocks/specific/bns'
 import type { BnsState } from '~/types/apply/specific/bns-state'
+import { useRouter } from 'vue-router'
+import { useChoice } from '~/stores/choice'
+
+const choiceStore = useChoice()
+
+const router = useRouter()
 
 const state = reactive<BnsState>({
   hrKnowledge: '',
@@ -47,7 +53,13 @@ const state = reactive<BnsState>({
 })
 
 const handleSubmit = () => {
-  console.log(state)
+  if (choiceStore.second === '') {
+    router.push('/apply/thankyou')
+  } else {
+    const secondChoice = choiceStore.second
+    choiceStore.setSecond('')
+    router.push(`/apply/specific/${secondChoice}`)
+  }
 }
 
 const handleChange = (value: any, name: keyof BnsState) => {
