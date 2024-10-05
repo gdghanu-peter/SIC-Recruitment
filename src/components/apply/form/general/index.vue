@@ -30,10 +30,17 @@
 </template>
 
 <script setup lang="ts">
+import { ref, reactive } from 'vue'
 import type { GeneralState } from '~/types/apply/general-state'
 import { generalQuestionData } from '~/mocks/general-form'
-import { useGeneralStore } from '~/stores/general'
-import type { ApplyTitle } from '~/types/apply/title'
+import { useChoice } from '~/stores/choice'
+import { useIds } from '~/stores/id'
+import { useRouter } from 'vue-router'
+import { useForm } from '~/composables/useForm'
+
+const choiceStore = useChoice()
+const idStore = useIds()
+const router = useRouter()
 
 const state = reactive<GeneralState>({
   name: '',
@@ -52,25 +59,21 @@ const state = reactive<GeneralState>({
   photoThoughts: ''
 })
 
-const generalStore = useGeneralStore()
+const { generalForm } = useForm()
 
-const handleSubmit = () => {
-  generalStore.setName(state.name)
-  generalStore.setDob(state.dob)
-  generalStore.setGender(state.gender)
-  generalStore.setHighSchool(state.highSchool)
-  generalStore.setMajor(state.major)
-  generalStore.setPhoneNumber(state.phoneNumber)
-  generalStore.setEmail(state.email)
-  generalStore.setFacebook(state.facebook)
-  generalStore.setAvatar(state.avatar)
-  generalStore.setExtracurriculars(state.extracurriculars)
-  generalStore.setStrengthsWeaknesses(state.strengthsWeaknesses)
-  generalStore.setUniqueness(state.uniqueness)
-  generalStore.setFuturePlans(state.futurePlans)
-  generalStore.setPhotoThoughts(state.photoThoughts)
+const handleSubmit = async () => {
+  try {
+    const res = await generalForm(state)
 
-  console.log('Dữ liệu đã lưu vào store:', generalStore.$state)
+    idStore.setId(res[0].id)
+
+    const firstChoice = choiceStore.first
+    choiceStore.setFirst('')
+
+    router.push(`/apply/specific/${firstChoice}`)
+  } catch (error) {
+    console.error('Lỗi khi gửi dữ liệu:', error)
+  }
 }
 
 const handleChange = (value: any, name: keyof GeneralState) => {
