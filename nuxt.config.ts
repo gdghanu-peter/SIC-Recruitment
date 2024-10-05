@@ -3,7 +3,8 @@ export default defineNuxtConfig({
     '@nuxt/ui',
     '@nuxt/eslint',
     '@nuxt/image',
-    'vue3-carousel-nuxt'
+    'vue3-carousel-nuxt',
+    '@pinia/nuxt'
   ],
   colorMode: {
     preference: 'light'
@@ -11,5 +12,8 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   srcDir: 'src',
   css: ['~/assets/css/globals.css', '~/assets/css/variables.css'],
-  compatibilityDate: '2024-07-28'
+  compatibilityDate: '2024-07-28',
+  pinia: {
+    storesDirs: ['~/stores/**']
+  }
 })

@@ -2,6 +2,10 @@
   font-weight: 700;
 }
 
+.font-medium {
+  font-weight: 500;
+}
+
 .text-hover-primary:hover {
   color: var(--primary-color);
 }
@@ -28,4 +32,25 @@
 
 .bg-through {
   background: linear-gradient(0deg, rgba(210, 6, 6, 0.35) 0%, rgba(210, 6, 6, 0.35) 100%), url(<path-to-image>) lightgray -3.837px -65.251px / 101.445% 209.431% no-repeat;
+}
+
+.text-form {
+  color: var(--form-color);
+}
+
+.bg-form {
+  background-color: var(--form-color);
+}
+
+.bg-form:hover {
+  background-color: #fa5997;
+}
+
+.bg-form-back {
+  background-color: #fa5997;
+
+}
+
+.text-form-glow {
+  text-shadow: 0px 0px 11px rgba(245, 76, 141, 0.55);
 }
