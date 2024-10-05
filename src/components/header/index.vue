@@ -1,6 +1,13 @@
 <template>
-  <div class="rounded-full border px-[104px] py-4 gap-9 flex w-fit bg-white border-gray-300">
-    <HeaderItem v-for="link in links" :key="link.label" :label="link.label" :to="link.label" />
+  <div
+    class="rounded-full border px-[104px] py-4 gap-9 flex w-fit bg-white backdrop-blur-xl shadow-xl border-gray-300"
+  >
+    <HeaderItem
+      v-for="link in links"
+      :key="link.label"
+      :label="link.label"
+      :to="link.label"
+    />
   </div>
 </template>
 
@@ -21,6 +28,6 @@ const links = ref([
   {
     label: 'CUỘC THI I-INVEST!',
     to: '/i-invest'
-  },
+  }
 ])
 </script>

@@ -3,6 +3,7 @@ export default defineNuxtConfig({
     '@nuxt/ui',
     '@nuxt/eslint',
     '@nuxt/image',
+    'vue3-carousel-nuxt'
   ],
   colorMode: {
     preference: 'light'
