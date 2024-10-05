@@ -7,11 +7,11 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@nuxtjs/supabase'
   ],
+  devtools: { enabled: true },
+  srcDir: 'src',
   colorMode: {
     preference: 'light'
   },
-  devtools: { enabled: true },
-  srcDir: 'src',
   css: ['~/assets/css/globals.css', '~/assets/css/variables.css'],
   compatibilityDate: '2024-07-28',
   pinia: {
