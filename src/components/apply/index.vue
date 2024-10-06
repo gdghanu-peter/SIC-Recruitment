@@ -37,11 +37,11 @@ import { ref } from 'vue'
 import { useChoice } from '~/stores/choice'
 
 const options = ref([
-  { label: 'Ban chuyên môn', value: 'bcm' },
-  { label: 'Ban truyền thông', value: 'btt' },
-  { label: 'Ban đối ngoại', value: 'bdn' },
-  { label: 'Ban sự kiện', value: 'bsk' },
-  { label: 'Ban nhân sự', value: 'bns' }
+  { label: 'Ban Chuyên môn', value: 'bcm' },
+  { label: 'Ban Truyền thông', value: 'btt' },
+  { label: 'Ban Đối ngoại', value: 'bdn' },
+  { label: 'Ban Sự kiện', value: 'bsk' },
+  { label: 'Ban Nhân sự', value: 'bns' }  
 ])
 
 const selectedItems = ref<string[]>([])
