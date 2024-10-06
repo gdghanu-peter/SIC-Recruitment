@@ -1,8 +1,8 @@
 <template>
-  <UContainer class="w-full">
-    <div class="flex flex-col items-center pt-10">
+  <UContainer class="w-full ">
+    <div class="flex flex-col  items-center pt-10">
       <Header />
-      <div class="rounded-2xl bg-white mt-[80px] w-[600px] p-10">
+      <div class="rounded-2xl bg-white mt-[80px] w-[300px] lg:w-[600px] p-4 lg:p-10 ">
         <p>
           Cảm ơn bạn đã quan tâm và ứng tuyển vào
           <span class="text-primary"> CLB Chứng khoán SIC - FTU</span>. Kết quả
