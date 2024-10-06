@@ -2,13 +2,13 @@
   <UContainer class="mt-[128px]">
     <CommonSignatureText content="Our story" class="text-center" />
     <div
-      class="flex gap-[60px] lg:flex-row flex-col items-center mt-8 lg:h-[250px] xl:h-[360px] items-start"
+      class="flex gap-[60px] lg:flex-row flex-col items-center mt-8 lg:h-[300px] xl:h-[360px] items-start"
     >
-      <div class="h-auto lg:max-h-full w-full lg:min-w-[500px] lg:w-auto">
+      <div class="h-auto lg:max-h-full w-full lg:min-w-[400px] lg:w-auto">
         <iframe
-          class="flex-grow"
-          width="500"
-          height="350"
+          class="mx-auto max-h-full max-w-full"
+          width="400"
+          height="250"
           src="https://www.youtube.com/embed/nTrX8jEARbU"
           title="VID CLB"
           frameborder="0"
