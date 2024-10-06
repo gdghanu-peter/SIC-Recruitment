@@ -32,23 +32,11 @@ export const bdnQuestionData: ApplyBdnQuestion[] = [
     basis: '1'
   },
   {
-    question: `"CLB Chứng khoán SIC sẽ tổ chức buổi Hội thảo: “Tài chính cá nhân - Từ tự do đến tự lo”, thông tin Hội thảo như sau:
-
-- Thời gian: 17h30, Thứ Năm, ngày 30/11/2024.
-- Địa điểm: Hội trường D201, Trường Đại học Ngoại thương.
-
-Giả sử em là thành viên Ban Đối ngoại CLB Chứng khoán SIC, hãy viết một email mời PGS. TS. Phạm Thu Hương - Phó Hiệu trưởng Trường Đại học Ngoại thương tham dự sự kiện này. Trình bày email của em trên nền tảng Google Docs và đính kèm tại đây.
-
-Yêu cầu:
-- Viết đầy đủ và đúng format của một email.
-- Có tiêu đề email rõ ràng. 
-- Không thay đổi những nội dung có sẵn của câu hỏi.
-- Hình thức gửi câu trả lời: File Word hoặc Google Docs (ĐÃ MỞ QUYỀN TRUY CẬP)
-"`,
+    question: '',
     required: true,
     inputType: 'textarea',
     placeholder: 'Hãy nhập câu trả lời của bạn',
-    image: '',
+    image: '/bdn.png',
     name: 'emailWriting',
     basis: '1'
   }
