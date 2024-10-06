@@ -6,18 +6,17 @@
       class="w-[820px] flex flex-wrap"
       @submit="handleSubmit"
     >
-      <ApplyFormQuestionSpecificBns
-        v-for="question in bnsQuestionData"
-        :key="question.question"
-        :image="question.image"
-        :input-type="question.inputType"
-        :placeholder="question.placeholder"
-        :question="question.question"
-        :required="question.required"
-        :name="question.name"
-        :basis="question.basis"
-        @change="handleChange"
-      />
+      <template v-for="question in bnsQuestionData" :key="question.name">
+      <UFormGroup :label="question.question" :name="question.name">
+        <NuxtImg v-if="question.image" :src="question.image" alt="Question Image" class="mb-4 w-full h-auto rounded-lg" />
+
+        <UInput
+          v-model="state[question.name]"
+          :type="question.inputType === 'textarea' ? 'textarea' : 'text'"
+          :placeholder="question.placeholder"
+        />
+      </UFormGroup>
+    </template>
 
       <div class="flex mx-auto gap-6">
         <UButton
@@ -37,22 +36,24 @@
 </template>
 
 <script setup lang="ts">
-import { bnsQuestionData } from '~/mocks/specific/bns'
-import type { BnsState } from '~/types/apply/specific/bns-state'
-import { useRouter } from 'vue-router'
-import { useChoice } from '~/stores/choice'
+import { useRouter } from 'vue-router';
+import { bnsQuestionData } from '~/mocks/specific/bns';
+import { useChoice } from '~/stores/choice';
+import type { BnsState } from '~/types/apply/specific/bns-state';
 
 const choiceStore = useChoice()
 
 const router = useRouter()
-
+const {formId} = useRoute().query
+const { bnsForm } = useForm()
 const state = reactive<BnsState>({
   hrKnowledge: '',
   personalReflection: '',
   creativeThinking: ''
 })
 
-const handleSubmit = () => {
+const handleSubmit = async() => {
+  await bnsForm(state, Number(formId))
   if (choiceStore.second === '') {
     router.push('/ttv/thankyou')
   } else {
@@ -62,7 +63,5 @@ const handleSubmit = () => {
   }
 }
 
-const handleChange = (value: any, name: keyof BnsState) => {
-  state[name] = value
-}
+
 </script>

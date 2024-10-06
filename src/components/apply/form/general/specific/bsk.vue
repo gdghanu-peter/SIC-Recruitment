@@ -6,18 +6,17 @@
       class="w-[820px] flex flex-wrap"
       @submit="handleSubmit"
     >
-      <ApplyFormQuestionSpecificBsk
-        v-for="question in bskQuestionData"
-        :key="question.question"
-        :image="question.image"
-        :input-type="question.inputType"
-        :placeholder="question.placeholder"
-        :question="question.question"
-        :required="question.required"
-        :name="question.name"
-        :basis="question.basis"
-        @change="handleChange"
-      />
+      <template v-for="question in bskQuestionData" :key="question.name">
+      <UFormGroup :label="question.question" :name="question.name">
+        <NuxtImg v-if="question.image" :src="question.image" alt="Question Image" class="mb-4 w-full h-auto rounded-lg" />
+
+        <UInput
+          v-model="state[question.name]"
+          :type="question.inputType === 'textarea' ? 'textarea' : 'text'"
+          :placeholder="question.placeholder"
+        />
+      </UFormGroup>
+    </template>
 
       <div class="flex mx-auto gap-6">
         <UButton
@@ -37,15 +36,16 @@
 </template>
 
 <script setup lang="ts">
-import { bskQuestionData } from '~/mocks/specific/bsk'
-import type { BskState } from '~/types/apply/specific/bsk-state'
-import { useRouter } from 'vue-router'
-import { useChoice } from '~/stores/choice'
+import { useRouter } from 'vue-router';
+import { bskQuestionData } from '~/mocks/specific/bsk';
+import { useChoice } from '~/stores/choice';
+import type { BskState } from '~/types/apply/specific/bsk-state';
 
 const choiceStore = useChoice()
 
 const router = useRouter()
-
+const {formId} = useRoute().query
+const { bskForm } = useForm()
 const state = reactive<BskState>({
   eventPlanning: '',
   riskTaking: '',
@@ -54,7 +54,8 @@ const state = reactive<BskState>({
   philosophicalReflection: ''
 })
 
-const handleSubmit = () => {
+const handleSubmit = async() => {
+  await bskForm(state, Number(formId))
   if (choiceStore.second === '') {
     router.push('/ttv/thankyou')
   } else {
@@ -64,7 +65,5 @@ const handleSubmit = () => {
   }
 }
 
-const handleChange = (value: any, name: keyof BskState) => {
-  state[name] = value
-}
+
 </script>

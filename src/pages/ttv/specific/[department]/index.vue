@@ -1,12 +1,14 @@
 <template>
-  <ApplyHeader />
-  <ApplySlogan class="mt-[100px]" />
-  <ApplyTitle :department="title" />
-  <ApplyFormGeneralSpecificBcm v-if="department === 'bcm'" />
-  <ApplyFormGeneralSpecificBdn v-if="department === 'bdn'" />
-  <ApplyFormGeneralSpecificBns v-if="department === 'bns'" />
-  <ApplyFormGeneralSpecificBsk v-if="department === 'bsk'" />
-  <ApplyFormGeneralSpecificBtt v-if="department === 'btt'" />
+ <div>
+    <ApplyHeader />
+    <ApplySlogan class="mt-[100px]" />
+    <ApplyTitle :department="title" />
+    <ApplyFormGeneralSpecificBcm v-if="department === 'bcm'" />
+    <ApplyFormGeneralSpecificBdn v-if="department === 'bdn'" />
+    <ApplyFormGeneralSpecificBns v-if="department === 'bns'" />
+    <ApplyFormGeneralSpecificBsk v-if="department === 'bsk'" />
+    <ApplyFormGeneralSpecificBtt v-if="department === 'btt'" />
+ </div>
 </template>
 
 <script setup lang="ts">
