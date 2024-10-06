@@ -17,7 +17,7 @@
           @select="handleSelect(item.value)"
         />
       </div>
-      <nuxt-link to="/apply/general">
+      <nuxt-link to="/ttv/general">
         <UButton
           trailing-icon="i-heroicons-arrow-right"
           color="red"

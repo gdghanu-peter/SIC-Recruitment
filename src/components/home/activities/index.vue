@@ -1,7 +1,7 @@
 <template>
   <UContainer class="mt-[80px]">
     <h1
-      class="uppercase text-3xl text-glow-2 font-bold text-primary text-center"
+      class="uppercase text-xl md:text-3xl text-glow-2 font-bold text-primary text-center"
     >
       Hoạt động nội bộ
     </h1>

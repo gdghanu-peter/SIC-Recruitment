@@ -1,6 +1,6 @@
 <template>
   <div
-    class="fixed z-20 top-[80px] left-0 right-0 mx-auto rounded-full border px-[104px] py-4 gap-9 flex w-fit bg-white backdrop-blur-xl shadow-xl border-gray-300"
+    class="fixed z-20 top-[80px] hidden md:flex left-0 right-0 mx-auto rounded-full border px-10 lg:px-[104px] py-4 gap-9 flex w-fit bg-white backdrop-blur-xl shadow-xl border-gray-300"
   >
     <HeaderItem
       v-for="link in links"
@@ -9,13 +9,17 @@
       :to="link.to"
     />
   </div>
+  <div class="w-full fixed top-0 md:hidden w-full bg-white h-16">
+    <div class="w-full relative top-0 w-full h-full flex items-center"></div>
+    <div class="flex flex-col"></div>
+  </div>
 </template>
 
 <script setup lang="ts">
 const links = ref([
   {
     label: 'CLB CHỨNG KHOÁN SIC',
-    to: '/sic-securities-club'
+    to: '/'
   },
   {
     label: 'TUYỂN THÀNH VIÊN',
@@ -23,7 +27,7 @@ const links = ref([
   },
   {
     label: 'KHÓA HỌC CHỨNG KHOÁN',
-    to: '/course'
+    to: '/startup'
   },
   {
     label: 'CUỘC THI I-INVEST!',

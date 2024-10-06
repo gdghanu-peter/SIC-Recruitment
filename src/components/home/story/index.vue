@@ -1,9 +1,17 @@
 <template>
   <UContainer class="mt-[128px]">
     <CommonSignatureText content="Our story" class="text-center" />
-    <div class="flex gap-[60px] mt-8 h-[360px] items-center">
-      <NuxtImg src="/story.png" fit="contain" class="h-full" />
-      <p class="text-justify text-glow-1 text-primary font-bold leading-loose">
+    <div
+      class="flex gap-[60px] lg:flex-row flex-col items-center mt-8 lg:h-[250px] xl:h-[360px] items-start"
+    >
+      <NuxtImg
+        src="/story.png"
+        fit="contain"
+        class="h-auto lg:max-h-full w-full lg:w-auto"
+      />
+      <p
+        class="text-justify grow text-glow-1 text-sm md:text-base text-primary font-bold leading-loose lg:leading-normal xl:leading-loose"
+      >
         Ra đời vào ngày 28 tháng 03 năm 2007 dưới sự bảo trợ của khoa Tài Chính
         - Ngân Hàng và Đoàn Thanh niên Trường Đại học Ngoại Thương, CLB Chứng
         khoán SIC - FTU mang sứ mệnh nâng bước người trẻ trên con đường theo

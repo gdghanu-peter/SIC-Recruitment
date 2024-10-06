@@ -70,7 +70,7 @@ const handleSubmit = async () => {
     const firstChoice = choiceStore.first
     choiceStore.setFirst('')
 
-    router.push(`/apply/specific/${firstChoice}`)
+    router.push(`/ttv/specific/${firstChoice}`)
   } catch (error) {
     console.error('Lỗi khi gửi dữ liệu:', error)
   }

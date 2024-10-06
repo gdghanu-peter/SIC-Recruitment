@@ -18,7 +18,7 @@ const links = [
   {
     label: 'Phần 01',
     icon: 'i-heroicons-link',
-    to: '/apply/general'
+    to: '/ttv/general'
   },
   {
     label: 'Phần 02',
