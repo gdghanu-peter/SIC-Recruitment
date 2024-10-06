@@ -4,11 +4,19 @@
     <div
       class="flex gap-[60px] lg:flex-row flex-col items-center mt-8 lg:h-[250px] xl:h-[360px] items-start"
     >
-      <NuxtImg
-        src="/story.png"
-        fit="contain"
-        class="h-auto lg:max-h-full w-full lg:w-auto"
-      />
+      <div class="h-auto lg:max-h-full w-full lg:min-w-[500px] lg:w-auto">
+        <iframe
+          class="flex-grow"
+          width="500"
+          height="350"
+          src="https://www.youtube.com/embed/nTrX8jEARbU"
+          title="VID CLB"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
+      </div>
       <p
         class="text-justify grow text-glow-1 text-sm md:text-base text-primary font-bold leading-loose lg:leading-normal xl:leading-loose"
       >
