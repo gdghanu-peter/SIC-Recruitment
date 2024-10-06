@@ -17,6 +17,7 @@
           @select="handleSelect(item.value)"
         />
       </div>
+      <div v-if="selectedItems.length > 0">
       <nuxt-link to="/ttv/general">
         <UButton
           trailing-icon="i-heroicons-arrow-right"
@@ -26,7 +27,7 @@
           class="font-bold text-xl gap-2 mt-4"
           @click="handleSubmit"
         />
-      </nuxt-link>
+      </nuxt-link></div>
     </div>
   </UContainer>
 </template>

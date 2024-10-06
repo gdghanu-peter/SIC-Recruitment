@@ -2,7 +2,6 @@
  <div>
     <ApplyHeader />
     <ApplySlogan/>
-    <ApplyTitle department="Ban truyền thông" />
     <ApplyFormGeneral />
  </div>
 </template>
