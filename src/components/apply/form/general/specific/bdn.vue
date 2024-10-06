@@ -6,18 +6,17 @@
       class="w-[820px] flex flex-wrap"
       @submit="handleSubmit"
     >
-      <ApplyFormQuestionSpecificBdn
-        v-for="question in bdnQuestionData"
-        :key="question.question"
-        :image="question.image"
-        :input-type="question.inputType"
-        :placeholder="question.placeholder"
-        :question="question.question"
-        :required="question.required"
-        :name="question.name"
-        :basis="question.basis"
-        @change="handleChange"
-      />
+       <template v-for="question in bdnQuestionData" :key="question.name">
+      <UFormGroup :label="question.question" :name="question.name">
+        <NuxtImg v-if="question.image" :src="question.image" alt="Question Image" class="mb-4 w-full h-auto rounded-lg" />
+
+        <UInput
+          v-model="state[question.name]"
+          :type="question.inputType === 'textarea' ? 'textarea' : 'text'"
+          :placeholder="question.placeholder"
+        />
+      </UFormGroup>
+    </template>
 
       <div class="flex mx-auto gap-6">
         <UButton
@@ -37,15 +36,15 @@
 </template>
 
 <script setup lang="ts">
-import { bdnQuestionData } from '~/mocks/specific/bdn'
-import type { BdnState } from '~/types/apply/specific/bdn-state'
-import { useRouter } from 'vue-router'
-import { useChoice } from '~/stores/choice'
+import { useRouter } from 'vue-router';
+import { bdnQuestionData } from '~/mocks/specific/bdn';
+import { useChoice } from '~/stores/choice';
+import type { BdnState } from '~/types/apply/specific/bdn-state';
 
 const choiceStore = useChoice()
 
 const router = useRouter()
-
+const {formId} = useRoute().query
 const state = reactive<BdnState>({
   understandingExternalRelations: '',
   selfReflection: '',
@@ -53,7 +52,10 @@ const state = reactive<BdnState>({
   emailWriting: ''
 })
 
-const handleSubmit = () => {
+const {bdnForm} = useForm()
+
+const handleSubmit = async () => {
+  await bdnForm(state, Number(formId))
   if (choiceStore.second === '') {
     router.push('/ttv/thankyou')
   } else {
@@ -63,7 +65,4 @@ const handleSubmit = () => {
   }
 }
 
-const handleChange = (value: any, name: keyof BdnState) => {
-  state[name] = value
-}
 </script>

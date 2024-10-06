@@ -8,6 +8,7 @@
       <NuxtImg v-if="image" :src="image" class="mx-auto my-8 w-[480px]" />
       <UInput
         v-if="inputType === 'text' || inputType === 'date'"
+        v-model="modelValue"
         :type="inputType"
         size="lg"
         class="w-full"
@@ -24,7 +25,6 @@
           }
         }"
         @input="handleChange"
-        v-model="modelValue"
       />
       <UTextarea
         v-else-if="inputType === 'textarea'"
@@ -42,7 +42,7 @@
           }
         }"
       />
-      <div class="flex gap-2" v-else>
+      <div v-else class="flex gap-2" >
         <UCheckbox
           v-for="option in genderOptions"
           :key="option.label"
@@ -55,8 +55,8 @@
 </template>
 
 <script setup lang="ts">
-import type { ApplyBcmQuestion } from '~/types/apply/question'
-import type { BcmState } from '~/types/apply/specific/bcm-state'
+import type { ApplyBcmQuestion } from '~/types/apply/question';
+import type { BcmState } from '~/types/apply/specific/bcm-state';
 
 const props = defineProps<ApplyBcmQuestion>()
 

@@ -8,6 +8,7 @@
       <NuxtImg v-if="image" :src="image" class="mx-auto my-8 w-[480px]" />
       <UInput
         v-if="inputType === 'text' || inputType === 'date'"
+        v-model="modelValue"
         :type="inputType"
         size="lg"
         class="w-full"
@@ -23,11 +24,11 @@
             }
           }
         }"
-        v-model="modelValue"
         @input="handleChange"
       />
       <UTextarea
         v-else-if="inputType === 'textarea'"
+        v-model="modelValue"
         class="w-full"
         :placeholder="placeholder"
         color="white"
@@ -41,13 +42,12 @@
             }
           }
         }"
-        v-model="modelValue"
         @input="handleChange"
       />
-      <div class="flex gap-2" v-else>
+      <div v-else class="flex gap-2" >
         <URadioGroup
-          :options="genderOptions"
           v-model="modelValue"
+          :options="genderOptions"
           color="red"
           @change="handleChange"
         />
@@ -57,9 +57,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
-import type { GeneralState } from '~/types/apply/general-state'
-import type { ApplyQuestion } from '~/types/apply/question'
+import { computed, ref } from 'vue';
+import type { GeneralState } from '~/types/apply/general-state';
+import type { ApplyQuestion } from '~/types/apply/question';
 
 const props = defineProps<ApplyQuestion>()
 

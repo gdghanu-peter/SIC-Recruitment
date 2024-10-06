@@ -6,18 +6,16 @@
       class="w-[820px] flex flex-wrap"
       @submit="handleSubmit"
     >
-      <ApplyFormQuestionSpecificBcm
-        v-for="question in bcmQuestionData"
-        :key="question.question"
-        :image="question.image"
-        :input-type="question.inputType"
-        :placeholder="question.placeholder"
-        :question="question.question"
-        :required="question.required"
-        :name="question.name"
-        :basis="question.basis"
-        @change="handleChange"
-      />
+      <template v-for="question in bcmQuestionData" :key="question.name">
+      <UFormGroup :label="question.question" :name="question.name">
+        <NuxtImg v-if="question.image" :src="question.image" alt="Question Image" class="mb-4 w-full h-auto rounded-lg" />
+        <UInput
+          v-model="state[question.name]"
+          :type="question.inputType === 'textarea' ? 'textarea' : 'text'"
+          :placeholder="question.placeholder"
+        />
+      </UFormGroup>
+    </template>
 
       <div class="flex mx-auto gap-6">
         <UButton
@@ -37,22 +35,26 @@
 </template>
 
 <script setup lang="ts">
-import { bcmQuestionData } from '~/mocks/specific/bcm'
-import type { BcmState } from '~/types/apply/specific/bcm-state'
-import { useRouter } from 'vue-router'
-import { useChoice } from '~/stores/choice'
+import { useRouter } from 'vue-router';
+import { bcmQuestionData } from '~/mocks/specific/bcm';
+import { useChoice } from '~/stores/choice';
+import type { BcmState } from '~/types/apply/specific/bcm-state';
 
 const choiceStore = useChoice()
 
 const router = useRouter()
-
+const {formId} = useRoute().query
 const state = reactive<BcmState>({
   logicalThinking: '',
   decisionMaking: '',
   financialPlanning: ''
 })
 
-const handleSubmit = () => {
+const { bcmForm } = useForm()
+
+const handleSubmit = async () => {
+  await bcmForm(state, Number(formId))
+  
   if (choiceStore.second === '') {
     router.push('/ttv/thankyou')
   } else {
@@ -62,7 +64,5 @@ const handleSubmit = () => {
   }
 }
 
-const handleChange = (value: any, name: keyof BcmState) => {
-  state[name] = value
-}
+
 </script>

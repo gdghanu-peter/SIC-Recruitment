@@ -30,16 +30,12 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
-import type { GeneralState } from '~/types/apply/general-state'
-import { generalQuestionData } from '~/mocks/general-form'
-import { useChoice } from '~/stores/choice'
-import { useIds } from '~/stores/id'
-import { useRouter } from 'vue-router'
-import { useForm } from '~/composables/useForm'
+import { useForm } from '~/composables/useForm';
+import { generalQuestionData } from '~/mocks/general-form';
+import { useChoice } from '~/stores/choice';
+import type { GeneralState } from '~/types/apply/general-state';
 
 const choiceStore = useChoice()
-const idStore = useIds()
 const router = useRouter()
 
 const state = reactive<GeneralState>({
@@ -65,12 +61,10 @@ const handleSubmit = async () => {
   try {
     const res = await generalForm(state)
 
-    idStore.setId(res[0].id)
-
     const firstChoice = choiceStore.first
     choiceStore.setFirst('')
 
-    router.push(`/ttv/specific/${firstChoice}`)
+    router.replace(`/ttv/specific/${firstChoice}?formId=${res[0].id}`)
   } catch (error) {
     console.error('Lỗi khi gửi dữ liệu:', error)
   }
@@ -78,6 +72,5 @@ const handleSubmit = async () => {
 
 const handleChange = (value: any, name: keyof GeneralState) => {
   state[name] = value
-  console.log(value)
 }
 </script>

@@ -1,5 +1,4 @@
 <template>
-  <UFormGroup :name="name.toString()" :required="required" :class="widthClass">
     <div class="mx-5 flex flex-col gap-1 mt-9">
       <label class="font-medium"
         >{{ question
@@ -8,6 +7,7 @@
       <NuxtImg v-if="image" :src="image" class="mx-auto my-8 w-[480px]" />
       <UInput
         v-if="inputType === 'text' || inputType === 'date'"
+        v-model="modelValue"
         :type="inputType"
         size="lg"
         class="w-full"
@@ -23,8 +23,6 @@
             }
           }
         }"
-        @input="handleChange"
-        v-model="modelValue"
       />
       <UTextarea
         v-else-if="inputType === 'textarea'"
@@ -42,7 +40,7 @@
           }
         }"
       />
-      <div class="flex gap-2" v-else>
+      <div v-else class="flex gap-2" >
         <UCheckbox
           v-for="option in genderOptions"
           :key="option.label"
@@ -51,12 +49,13 @@
         />
       </div>
     </div>
-  </UFormGroup>
 </template>
 
 <script setup lang="ts">
-import type { ApplyBttQuestion } from '~/types/apply/question'
-import type { BttState } from '~/types/apply/specific/btt-state'
+import type { ApplyBttQuestion } from '~/types/apply/question';
+
+
+
 
 const props = defineProps<ApplyBttQuestion>()
 
@@ -81,11 +80,4 @@ const genderOptions = ref([
 
 const modelValue = ref<any>()
 
-const emit = defineEmits<{
-  (e: 'change', value: any, name: keyof BttState): void
-}>()
-
-const handleChange = () => {
-  emit('change', modelValue.value, props.name)
-}
 </script>

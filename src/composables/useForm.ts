@@ -1,9 +1,9 @@
 import type { GeneralState } from '~/types/apply/general-state'
-import type { BttState } from '~/types/apply/specific/btt-state'
 import type { BcmState } from '~/types/apply/specific/bcm-state'
 import type { BdnState } from '~/types/apply/specific/bdn-state'
-import type { BskState } from '~/types/apply/specific/bsk-state'
 import type { BnsState } from '~/types/apply/specific/bns-state'
+import type { BskState } from '~/types/apply/specific/bsk-state'
+import type { BttState } from '~/types/apply/specific/btt-state'
 
 export const useForm = () => {
   const supabase: any = useSupabaseClient()
