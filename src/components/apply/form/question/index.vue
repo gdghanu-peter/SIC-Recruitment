@@ -1,5 +1,10 @@
 <template>
-  <UFormGroup class="w-full" :name="name.toString()" :required="required" :class="widthClass">
+  <UFormGroup
+    class="w-full"
+    :name="name.toString()"
+    :required="required"
+    :class="widthClass"
+  >
     <div class="mx-5 flex flex-col gap-1 mt-9">
       <label class="font-medium"
         >{{ question }}
@@ -44,7 +49,7 @@
         }"
         @input="handleChange"
       />
-      <div v-else class="flex gap-2" >
+      <div v-else class="flex gap-2">
         <URadioGroup
           v-model="modelValue"
           :options="genderOptions"
@@ -57,9 +62,9 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue';
-import type { GeneralState } from '~/types/apply/general-state';
-import type { ApplyQuestion } from '~/types/apply/question';
+import { computed, ref } from 'vue'
+import type { GeneralState } from '~/types/apply/general-state'
+import type { ApplyQuestion } from '~/types/apply/question'
 
 const props = defineProps<ApplyQuestion>()
 

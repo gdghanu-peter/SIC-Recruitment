@@ -43,14 +43,14 @@ const activities = ref([
       '"Làm hết sức, chơi hết mình", với mục tiêu gắn kết 02 thế hệ SICers, Du lịch Câu lạc bộ trở thành hoạt động thường niên của SIC, là nơi các thành viên quây quần bên nhau, viết nên những kỉ niệm đáng nhớ. Chuyến đi chơi ấy cũng sẽ là dịp để SICers nghỉ ngơi sau một nhiệm kỳ tất bật với các sự kiện.'
   },
   {
-    name: 'SIC-STU',
+    name: 'SIC-STUDIO',
     image: '/activities/sicstu.jpg',
     subtitle: 'Cùng SIC "master" trọn bộ kĩ năng nhiếp ảnh và thiết kế',
     description:
       'Hoạt động training sử dụng bộ công cụ thiết kế: Photoshop, After effect,... và kỹ năng nhiếp ảnh.  Dưới sự hướng dẫn của Ban Truyền thông SIC, các thành viên CLB sẽ bỏ túi thêm kỹ năng chỉnh sửa ảnh, video và chụp ảnh cơ bản. Đây là một trong những hoạt động nội của SIC hướng tới sự phát triển toàn diện của các thành viên với những kỹ năng mang tính ứng dụng cao.'
   },
   {
-    name: 'I-Sharing',
+    name: 'I-Sharing!',
     image: '/activities/isharing.jpg',
     subtitle: 'Đầu tư theo cách của bạn',
     description:

@@ -1,61 +1,58 @@
 <template>
-    <div class="mx-5 flex flex-col gap-1 mt-9">
-      <label class="font-medium"
-        >{{ question
-        }}<span class="text-red-500 ml-0.5">{{ required && '*' }}</span></label
-      >
-      <NuxtImg v-if="image" :src="image" class="mx-auto my-8 w-[480px]" />
-      <UInput
-        v-if="inputType === 'text' || inputType === 'date'"
-        v-model="modelValue"
-        :type="inputType"
-        size="lg"
-        class="w-full"
-        :placeholder="placeholder"
-        color="white"
-        :ui="{
-          rounded: 'rounded-lg',
-          placeholder: 'italic',
-          color: {
-            white: {
-              outline:
-                'shadow-sm bg-white text-gray-900 ring-primary ring-2 ring-inset ring-gray-300 focus:ring-2 focus:ring-red-400'
-            }
+  <div class="mx-5 flex flex-col gap-1 mt-9">
+    <label class="font-medium"
+      >{{ question
+      }}<span class="text-red-500 ml-0.5">{{ required && '*' }}</span></label
+    >
+    <NuxtImg v-if="image" :src="image" class="mx-auto my-8 w-[480px]" />
+    <UInput
+      v-if="inputType === 'text' || inputType === 'date'"
+      v-model="modelValue"
+      :type="inputType"
+      size="lg"
+      class="w-full"
+      :placeholder="placeholder"
+      color="white"
+      :ui="{
+        rounded: 'rounded-lg',
+        placeholder: 'italic',
+        color: {
+          white: {
+            outline:
+              'shadow-sm bg-white text-gray-900 ring-primary ring-2 ring-inset ring-gray-300 focus:ring-2 focus:ring-red-400'
           }
-        }"
-      />
-      <UTextarea
-        v-else-if="inputType === 'textarea'"
-        class="w-full"
-        :placeholder="placeholder"
-        color="white"
-        :ui="{
-          rounded: 'rounded-lg',
-          placeholder: 'italic',
-          color: {
-            white: {
-              outline:
-                'shadow-sm bg-white text-gray-900 ring-primary ring-2 ring-inset ring-gray-300 focus:ring-2 focus:ring-red-400'
-            }
+        }
+      }"
+    />
+    <UTextarea
+      v-else-if="inputType === 'textarea'"
+      class="w-full"
+      :placeholder="placeholder"
+      color="white"
+      :ui="{
+        rounded: 'rounded-lg',
+        placeholder: 'italic',
+        color: {
+          white: {
+            outline:
+              'shadow-sm bg-white text-gray-900 ring-primary ring-2 ring-inset ring-gray-300 focus:ring-2 focus:ring-red-400'
           }
-        }"
+        }
+      }"
+    />
+    <div v-else class="flex gap-2">
+      <UCheckbox
+        v-for="option in genderOptions"
+        :key="option.label"
+        :label="option.label"
+        color="red"
       />
-      <div v-else class="flex gap-2" >
-        <UCheckbox
-          v-for="option in genderOptions"
-          :key="option.label"
-          :label="option.label"
-          color="red"
-        />
-      </div>
     </div>
+  </div>
 </template>
 
 <script setup lang="ts">
-import type { ApplyBttQuestion } from '~/types/apply/question';
-
-
-
+import type { ApplyBttQuestion } from '~/types/apply/question'
 
 const props = defineProps<ApplyBttQuestion>()
 
@@ -79,5 +76,4 @@ const genderOptions = ref([
 ])
 
 const modelValue = ref<any>()
-
 </script>

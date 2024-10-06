@@ -21,6 +21,12 @@
 <script setup lang="ts">
 const departments = ref([
   {
+    name: 'Ban Chuyên môn',
+    description:
+      'Gắn liền với những dấu ấn học thuật ấn tượng, Ban Chuyên môn là nơi khơi nguồn những ý tưởng, những nội dung chuyên môn cốt lõi - tiền đề cho sự thành công trong các sự kiện của SIC. Để có thể thực hiện sứ mệnh ấy, ngay từ khi còn là những cộng tác viên, các thành viên của Ban Chuyên môn đã được đào tạo chuyên sâu về kiến thức, tập trung trau dồi những kỹ năng cần thiết, tôi luyện bản lĩnh của những chú “cá mập” vững vàng trước làn sóng khắc nghiệt của thị trường.',
+    image: '/departments/bcm.png'
+  },
+  {
     name: 'Ban Truyền thông',
     description:
       'Với sứ mệnh lan tỏa và nâng tầm thương hiệu CLB Chứng khoán SIC, Ban Truyền thông là nơi hội tụ những cá thể năng động và sáng tạo nhất - chủ nhân của những content thú vị, những ấn phẩm bắt mắt. Đóng vai trò cơ quan ngôn luận của SIC, các thành viên Ban Truyền thông chịu trách nhiệm chính trong việc vận hành các phương tiện truyền thông, xây dựng ý tưởng và chiến lược truyền thông hiệu quả cho từng sự kiện, mang giá trị và hình ảnh CLB đến gần hơn với sinh viên và doanh nghiệp trên khắp cả nước.',
@@ -31,12 +37,6 @@ const departments = ref([
     description:
       'Nhắc đến Ban Đối ngoại là nhắc đến những "SICnature" rất riêng: Chỉn chu, chuyên nghiệp, thu hút và tự tin,. Đóng vai trò kết nối và duy trì mối quan hệ với các đối tác, những "nhà đàm phán" tài năng từ Ban Đối ngoại chính là đại sứ thương hiệu giúp CLB mở rộng mạng lưới hợp tác với giới tài chính - doanh nghiệp, góp phần nâng tầm quy mô tổ chức của các sự kiện ngoại tầm cỡ.',
     image: '/departments/bdn.png'
-  },
-  {
-    name: 'Ban Chuyên môn',
-    description:
-      'Gắn liền với những dấu ấn học thuật ấn tượng, Ban Chuyên môn là nơi khơi nguồn những ý tưởng, những nội dung chuyên môn cốt lõi - tiền đề cho sự thành công trong các sự kiện của SIC. Để có thể thực hiện sứ mệnh ấy, ngay từ khi còn là những cộng tác viên, các thành viên của Ban Chuyên môn đã được đào tạo chuyên sâu về kiến thức, tập trung trau dồi những kỹ năng cần thiết, tôi luyện bản lĩnh của những chú “cá mập” vững vàng trước làn sóng khắc nghiệt của thị trường.',
-    image: '/departments/bcm.png'
   },
   {
     name: 'Ban Nhân sự',

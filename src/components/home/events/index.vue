@@ -14,6 +14,7 @@
         class="w-full hidden md:block"
         :ui="{ item: 'basis-full', indicators: { active: 'bg-primary' } }"
         indicators
+        ref="carouselRef"
       >
         <NuxtImg :src="item" class="w-full" fit="contain" />
       </UCarousel>
@@ -23,6 +24,7 @@
         class="w-full md:hidden"
         :ui="{ item: 'basis-full' }"
         :indicators="false"
+        ref="carouselRef2"
       >
         <NuxtImg :src="item" class="w-full" fit="contain" />
       </UCarousel>
@@ -51,4 +53,32 @@ const events = ref([
   '/events/STU/408791780_727018549453465_4029016454082197901_n.jpg',
   '/events/STU/408861082_727018412786812_1094183018092890590_n.jpg'
 ])
+
+const carouselRef = ref()
+
+onMounted(() => {
+  setInterval(() => {
+    if (!carouselRef.value) return
+
+    if (carouselRef.value.page === carouselRef.value.pages) {
+      return carouselRef.value.select(0)
+    }
+
+    carouselRef.value.next()
+  }, 3000)
+})
+
+const carouselRef2 = ref()
+
+onMounted(() => {
+  setInterval(() => {
+    if (!carouselRef2.value) return
+
+    if (carouselRef2.value.page === carouselRef2.value.pages) {
+      return carouselRef2.value.select(0)
+    }
+
+    carouselRef2.value.next()
+  }, 3000)
+})
 </script>

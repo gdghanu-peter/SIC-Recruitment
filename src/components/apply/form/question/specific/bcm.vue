@@ -1,11 +1,16 @@
 <template>
-  <UFormGroup :name="name.toString()" :required="required" :class="widthClass">
+  <UFormGroup
+    class="w-full"
+    :name="name.toString()"
+    :required="required"
+    :class="widthClass"
+  >
     <div class="mx-5 flex flex-col gap-1 mt-9">
       <label class="font-medium"
         >{{ question
         }}<span class="text-red-500 ml-0.5">{{ required && '*' }}</span></label
       >
-      <NuxtImg v-if="image" :src="image" class="mx-auto my-8 w-[480px]" />
+      <NuxtImg v-if="image" :src="image" class="mx-auto my-8 max-w-[480px]" />
       <UInput
         v-if="inputType === 'text' || inputType === 'date'"
         v-model="modelValue"
@@ -42,7 +47,7 @@
           }
         }"
       />
-      <div v-else class="flex gap-2" >
+      <div v-else class="flex gap-2">
         <UCheckbox
           v-for="option in genderOptions"
           :key="option.label"
@@ -55,8 +60,8 @@
 </template>
 
 <script setup lang="ts">
-import type { ApplyBcmQuestion } from '~/types/apply/question';
-import type { BcmState } from '~/types/apply/specific/bcm-state';
+import type { ApplyBcmQuestion } from '~/types/apply/question'
+import type { BcmState } from '~/types/apply/specific/bcm-state'
 
 const props = defineProps<ApplyBcmQuestion>()
 
