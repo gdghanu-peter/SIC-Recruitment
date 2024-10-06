@@ -10,7 +10,7 @@
     />
   </div>
   <div class="w-full fixed top-0 md:hidden z-20  bg-white h-16">
-    <div class="w-full relative top-0 h-full flex items-center">
+    <div class="w-full relative top-0 h-full flex left-0 items-center">
       <UButton
         name="i-heroicons-bars-3-bottom-left"
         class="relative text-primary"
