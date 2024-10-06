@@ -1,12 +1,12 @@
 <template>
   <div
-    class="rounded-full border px-[104px] py-4 gap-9 flex w-fit bg-white backdrop-blur-xl shadow-xl border-gray-300"
+    class="fixed z-20 top-[80px] left-0 right-0 mx-auto rounded-full border px-[104px] py-4 gap-9 flex w-fit bg-white backdrop-blur-xl shadow-xl border-gray-300"
   >
     <HeaderItem
       v-for="link in links"
       :key="link.label"
       :label="link.label"
-      :to="link.label"
+      :to="link.to"
     />
   </div>
 </template>
@@ -19,7 +19,7 @@ const links = ref([
   },
   {
     label: 'TUYỂN THÀNH VIÊN',
-    to: '/recruitment'
+    to: '/ttv'
   },
   {
     label: 'KHÓA HỌC CHỨNG KHOÁN',

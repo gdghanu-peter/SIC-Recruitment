@@ -1,6 +1,6 @@
 <template>
   <ApplyHeader />
-  <ApplyFormBreadcrumb class="mx-auto" />
+  <ApplySlogan class="mt-[100px]" />
   <ApplyTitle :department="title" />
   <ApplyFormGeneralSpecificBcm v-if="department === 'bcm'" />
   <ApplyFormGeneralSpecificBdn v-if="department === 'bdn'" />

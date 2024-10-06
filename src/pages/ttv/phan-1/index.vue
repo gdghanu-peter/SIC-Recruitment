@@ -1,6 +1,6 @@
 <template>
   <ApplyHeader />
-  <ApplySlogan />
+  <ApplySlogan class="mt-[100px]" />
   <ApplyTitle department="Ban truyền thông" />
   <ApplyFormGeneral />
 </template>
