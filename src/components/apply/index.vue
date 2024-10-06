@@ -4,9 +4,9 @@
       <h1 class="font-bold text-form text-2xl uppercase">
         Bạn chọn đăng ký vào ban
       </h1>
-      <span class="text-sm italic text-gray-700">
+      <!-- <span class="text-sm italic text-gray-700">
         Lưu ý: Bạn chỉ được chọn TỐI ĐA 02 ban
-      </span>
+      </span> -->
       <div class="flex flex-col gap-4 mt-8">
         <ApplyItem
           v-for="item in options"
@@ -50,7 +50,7 @@ const handleSelect = (value: string) => {
   if (selectedItems.value.includes(value)) {
     selectedItems.value = selectedItems.value.filter((item) => item !== value)
   } else {
-    if (selectedItems.value.length < 2) {
+    if (selectedItems.value.length < 1) {
       selectedItems.value.push(value)
     }
   }

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="fixed z-20 top-[80px] hidden md:flex left-0 right-0 mx-auto rounded-full border px-10 lg:px-[104px] py-4 gap-9 flex w-fit bg-white backdrop-blur-xl shadow-xl border-gray-300"
+    class="fixed z-20 top-[20px] hidden md:flex left-0 right-0 mx-auto rounded-full border px-10  py-4 gap-9 w-fit bg-white backdrop-blur-xl shadow-xl border-gray-300"
   >
     <HeaderItem
       v-for="link in links"
@@ -9,8 +9,8 @@
       :to="link.to"
     />
   </div>
-  <div class="w-full fixed top-0 md:hidden z-20 w-full bg-white h-16">
-    <div class="w-full relative top-0 w-full h-full flex items-center">
+  <div class="w-full fixed top-0 md:hidden z-20  bg-white h-16">
+    <div class="w-full relative top-0 h-full flex items-center">
       <UButton
         name="i-heroicons-bars-3-bottom-left"
         class="relative text-primary"
@@ -44,13 +44,13 @@ const links = ref([
     label: 'TUYỂN THÀNH VIÊN',
     to: '/ttv'
   },
-  {
-    label: 'KHÓA HỌC CHỨNG KHOÁN',
-    to: '/startup'
-  },
+  // {
+  //   label: 'KHÓA HỌC CHỨNG KHOÁN',
+  //   to: '/startup'
+  // },
   {
     label: 'CUỘC THI I-INVEST!',
-    to: '/i-invest'
+    to: 'https://www.sicftu-iinvest.com/'
   }
 ])
 

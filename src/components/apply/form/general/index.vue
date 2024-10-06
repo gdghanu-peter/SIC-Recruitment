@@ -3,7 +3,7 @@
     <span class="uppercase text-form-grow font-bold text-3xl">Phần 01</span>
     <UForm
       :state="state"
-      class="w-[820px] flex flex-wrap"
+      class="lg:w-[820px] w-[400px] flex flex-col lg:flex-row lg:flex-wrap"
       @submit="handleSubmit"
     >
       <ApplyFormQuestion

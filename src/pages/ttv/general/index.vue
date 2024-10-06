@@ -1,7 +1,7 @@
 <template>
  <div>
     <ApplyHeader />
-    <ApplySlogan class="mt-[100px]" />
+    <ApplySlogan/>
     <ApplyTitle department="Ban truyền thông" />
     <ApplyFormGeneral />
  </div>

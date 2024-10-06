@@ -1,5 +1,5 @@
 <template>
-  <UFormGroup :name="name.toString()" :required="required" :class="widthClass">
+  <UFormGroup class="w-full" :name="name.toString()" :required="required" :class="widthClass">
     <div class="mx-5 flex flex-col gap-1 mt-9">
       <label class="font-medium"
         >{{ question }}

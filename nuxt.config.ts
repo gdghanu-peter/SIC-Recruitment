@@ -12,6 +12,7 @@ export default defineNuxtConfig({
   colorMode: {
     preference: 'light'
   },
+  
   css: ['~/assets/css/globals.css', '~/assets/css/variables.css'],
   compatibilityDate: '2024-07-28',
   pinia: {

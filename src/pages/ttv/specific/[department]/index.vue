@@ -1,7 +1,7 @@
 <template>
  <div>
     <ApplyHeader />
-    <ApplySlogan class="mt-[100px]" />
+    <ApplySlogan />
     <ApplyTitle :department="title" />
     <ApplyFormGeneralSpecificBcm v-if="department === 'bcm'" />
     <ApplyFormGeneralSpecificBdn v-if="department === 'bdn'" />

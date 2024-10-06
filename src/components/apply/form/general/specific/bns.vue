@@ -1,35 +1,35 @@
 <template>
   <div class="mt-8 pb-[100px] flex flex-col items-center">
-    <span class="uppercase text-form-grow font-bold text-3xl">Phần 02</span>
+    <span class="uppercase text-form-grow font-bold text-3xl mb-8">Phần 02</span>
     <UForm
       :state="state"
-      class="w-[820px] flex flex-wrap"
+      class="w-[410px] lg:w-[820px]"
       @submit="handleSubmit"
     >
       <template v-for="question in bnsQuestionData" :key="question.name">
-      <UFormGroup :label="question.question" :name="question.name">
+      <UFormGroup class="mb-8" :label="question.question" :name="question.name">
         <NuxtImg v-if="question.image" :src="question.image" alt="Question Image" class="mb-4 w-full h-auto rounded-lg" />
 
-        <UInput
+        <UTextarea
           v-model="state[question.name]"
           :type="question.inputType === 'textarea' ? 'textarea' : 'text'"
           :placeholder="question.placeholder"
+          :ui="{
+          rounded: 'rounded-lg',
+          placeholder: 'italic',
+          color: {
+            white: {
+              outline:
+                'shadow-sm bg-white text-gray-900 ring-primary ring-2 ring-inset ring-gray-300 focus:ring-2 focus:ring-red-400'
+            }
+          }
+        }"
         />
       </UFormGroup>
     </template>
 
-      <div class="flex mx-auto gap-6">
-        <UButton
-          class="bg-form-back mx-auto uppercase mt-8"
-          size="lg"
-          label="Quay lại"
-        />
-        <UButton
-          class="bg-form mx-auto uppercase mt-8"
-          type="submit"
-          size="lg"
-          label="Tiếp theo"
-        />
+    <div class="float-right">
+        <UButton class="bg-form uppercase mt-8" type="submit" size="lg" label="Hoàn thành" />
       </div>
     </UForm>
   </div>

@@ -1,5 +1,5 @@
 <template>
-  <UContainer class="pt-[60px]">
+  <UContainer>
     <Header class="mx-auto" />
   </UContainer>
 </template>
