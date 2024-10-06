@@ -1,19 +1,28 @@
 <template>
   <UContainer
-    class="mt-[120px] pt-11 pb-20 rounded-[40px] shadow-lg bg-white/60"
+    class="mt-[120px] py-6 md:pt-11 md:pb-20 rounded-[40px] shadow-lg bg-white/60"
   >
     <h1
-      class="uppercase text-center text-glow-2 text-primary font-bold text-3xl"
+      class="uppercase text-center text-glow-2 text-primary font-bold text-xl md:text-3xl"
     >
       Những sự kiện nổi bật
     </h1>
-    <div class="mt-[60px] mx-[140px]">
+    <div class="mt-6 md:mt-[60px] mx-[20px] md:mx-[140px]">
       <UCarousel
         v-slot="{ item }"
         :items="events"
-        class="w-full"
+        class="w-full hidden md:block"
         :ui="{ item: 'basis-full', indicators: { active: 'bg-primary' } }"
         indicators
+      >
+        <NuxtImg :src="item" class="w-full" fit="contain" />
+      </UCarousel>
+      <UCarousel
+        v-slot="{ item }"
+        :items="events"
+        class="w-full md:hidden"
+        :ui="{ item: 'basis-full' }"
+        :indicators="false"
       >
         <NuxtImg :src="item" class="w-full" fit="contain" />
       </UCarousel>

@@ -56,11 +56,11 @@ const state = reactive<BskState>({
 
 const handleSubmit = () => {
   if (choiceStore.second === '') {
-    router.push('/apply/thankyou')
+    router.push('/ttv/thankyou')
   } else {
     const secondChoice = choiceStore.second
     choiceStore.setSecond('')
-    router.push(`/apply/specific/${secondChoice}`)
+    router.push(`/ttv/specific/${secondChoice}`)
   }
 }
 
