@@ -9,9 +9,28 @@
       :to="link.to"
     />
   </div>
-  <div class="w-full fixed top-0 md:hidden w-full bg-white h-16">
-    <div class="w-full relative top-0 w-full h-full flex items-center"></div>
-    <div class="flex flex-col"></div>
+  <div class="w-full fixed top-0 md:hidden z-20 w-full bg-white h-16">
+    <div class="w-full relative top-0 w-full h-full flex items-center">
+      <UButton
+        name="i-heroicons-bars-3-bottom-left"
+        class="relative text-primary"
+        variant="ghost"
+        size="xl"
+        color="white"
+        @click="toggleMenu"
+        label="Menu"
+      />
+    </div>
+    <div class="flex flex-col absolute bg-white pl-4 w-full">
+      <HeaderItem
+        v-for="link in links"
+        :key="link.label"
+        :label="link.label"
+        :to="link.to"
+        :class="!isMenuOpen && 'hidden'"
+        class="py-2"
+      />
+    </div>
   </div>
 </template>
 
@@ -34,4 +53,10 @@ const links = ref([
     to: '/i-invest'
   }
 ])
+
+const isMenuOpen = ref(false)
+
+const toggleMenu = () => {
+  isMenuOpen.value = !isMenuOpen.value
+}
 </script>

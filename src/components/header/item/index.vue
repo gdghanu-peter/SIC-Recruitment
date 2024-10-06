@@ -1,6 +1,6 @@
 <template>
   <nuxt-link :to="to">
-    <span class="font-bold text-xs lg:text-sm text-black text-hover-primary">{{
+    <span class="font-bold text-sm text-black text-hover-primary">{{
       label
     }}</span>
   </nuxt-link>
