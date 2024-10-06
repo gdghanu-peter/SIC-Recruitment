@@ -6,6 +6,7 @@
     <UForm
       :state="state"
       @submit="handleSubmit"
+      :validate="validate"
       class="lg:w-[820px] w-[400px] flex flex-col lg:flex-row lg:flex-wrap"
     >
       <template v-for="question in bcmQuestionData" :key="question.name">
@@ -54,6 +55,7 @@ import { useRouter } from 'vue-router'
 import { bcmQuestionData } from '~/mocks/specific/bcm'
 import { useChoice } from '~/stores/choice'
 import type { BcmState } from '~/types/apply/specific/bcm-state'
+import type { FormError } from '#ui/types'
 
 const choiceStore = useChoice()
 
@@ -64,6 +66,19 @@ const state = reactive<BcmState>({
   decisionMaking: '',
   financialPlanning: ''
 })
+
+const errorMessage = 'Bạn cần điền vào trường này'
+
+const validate = (state: BcmState): FormError[] => {
+  const errors = []
+  if (!state.logicalThinking)
+    errors.push({ path: 'logicalThinking', message: errorMessage })
+  if (!state.decisionMaking)
+    errors.push({ path: 'decisionMaking', message: errorMessage })
+  if (!state.financialPlanning)
+    errors.push({ path: 'financialPlanning', message: errorMessage })
+  return errors
+}
 
 const { bcmForm } = useForm()
 

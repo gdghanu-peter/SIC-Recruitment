@@ -3,7 +3,12 @@
     <span class="uppercase text-form-grow font-bold text-3xl mb-8"
       >Phần 02</span
     >
-    <UForm :state="state" class="w-[410px] lg:w-[820px]" @submit="handleSubmit">
+    <UForm
+      :state="state"
+      class="w-[410px] lg:w-[820px]"
+      :validate="validate"
+      @submit="handleSubmit"
+    >
       <template v-for="question in bttQuestionData" :key="question.name">
         <UFormGroup
           class="mb-8"
@@ -51,6 +56,7 @@ import { useRouter } from 'vue-router'
 import { bttQuestionData } from '~/mocks/specific/btt'
 import { useChoice } from '~/stores/choice'
 import type { BttState } from '~/types/apply/specific/btt-state'
+import type { FormError } from '#ui/types'
 const choiceStore = useChoice()
 
 const router = useRouter()
@@ -64,6 +70,21 @@ const state = reactive<BttState>({
   mediaCampaign: '',
   messageInterpretation: ''
 })
+
+const errorMessage = 'Bạn cần điền vào trường này'
+
+const validate = (state: BttState): FormError[] => {
+  const errors = []
+  if (!state.communicationRole)
+    errors.push({ path: 'communicationRole', message: errorMessage })
+  if (!state.contentAttraction)
+    errors.push({ path: 'contentAttraction', message: errorMessage })
+  if (!state.messageInterpretation)
+    errors.push({ path: 'messageInterpretation', message: errorMessage })
+  if (!state.mediaCampaign)
+    errors.push({ path: 'mediaCampaign', message: errorMessage })
+  return errors
+}
 
 const handleSubmit = async () => {
   await bttForm(state, Number(formId))

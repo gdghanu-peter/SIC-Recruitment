@@ -3,6 +3,7 @@
     <span class="uppercase text-form-grow font-bold text-3xl">Phần 01</span>
     <UForm
       :state="state"
+      :validate="validate"
       class="lg:w-[820px] w-[400px] flex flex-col lg:flex-row lg:flex-wrap"
       @submit="handleSubmit"
     >
@@ -30,10 +31,11 @@
 </template>
 
 <script setup lang="ts">
-import { useForm } from '~/composables/useForm';
-import { generalQuestionData } from '~/mocks/general-form';
-import { useChoice } from '~/stores/choice';
-import type { GeneralState } from '~/types/apply/general-state';
+import { useForm } from '~/composables/useForm'
+import { generalQuestionData } from '~/mocks/general-form'
+import { useChoice } from '~/stores/choice'
+import type { GeneralState } from '~/types/apply/general-state'
+import type { FormError } from '#ui/types'
 
 const choiceStore = useChoice()
 const router = useRouter()
@@ -54,6 +56,33 @@ const state = reactive<GeneralState>({
   futurePlans: '',
   photoThoughts: ''
 })
+
+const errorMessage = 'Bạn cần điền vào trường này'
+
+const validate = (state: GeneralState): FormError[] => {
+  const errors: FormError[] = []
+
+  if (!state.name) errors.push({ path: 'name', message: errorMessage })
+  if (!state.dob) errors.push({ path: 'dob', message: errorMessage })
+  if (!state.gender) errors.push({ path: 'gender', message: errorMessage })
+  if (!state.highSchool)
+    errors.push({ path: 'highSchool', message: errorMessage })
+  if (!state.phoneNumber)
+    errors.push({ path: 'phoneNumber', message: errorMessage })
+  if (!state.email) errors.push({ path: 'email', message: errorMessage })
+  if (!state.extracurriculars)
+    errors.push({ path: 'extracurriculars', message: errorMessage })
+  if (!state.strengthsWeaknesses)
+    errors.push({ path: 'strengthsWeaknesses', message: errorMessage })
+  if (!state.uniqueness)
+    errors.push({ path: 'uniqueness', message: errorMessage })
+  if (!state.futurePlans)
+    errors.push({ path: 'futurePlans', message: errorMessage })
+  if (!state.photoThoughts)
+    errors.push({ path: 'photoThoughts', message: errorMessage })
+
+  return errors
+}
 
 const { generalForm } = useForm()
 

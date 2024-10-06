@@ -3,7 +3,12 @@
     <span class="uppercase text-form-grow font-bold text-3xl mb-8"
       >Phần 02</span
     >
-    <UForm :state="state" class="w-[410px] lg:w-[820px]" @submit="handleSubmit">
+    <UForm
+      :state="state"
+      class="w-[410px] lg:w-[820px]"
+      @submit="handleSubmit"
+      :validate="validate"
+    >
       <template v-for="question in bnsQuestionData" :key="question.name">
         <UFormGroup
           class="mb-8"
@@ -16,7 +21,6 @@
             alt="Question Image"
             class="mb-4 w-auto mx-auto max-h-[200px] rounded-lg"
           />
-
           <UTextarea
             v-model="state[question.name]"
             :type="question.inputType === 'textarea' ? 'textarea' : 'text'"
@@ -34,7 +38,6 @@
           />
         </UFormGroup>
       </template>
-
       <div class="flex justify-center">
         <UButton
           class="bg-form uppercase mt-8"
@@ -52,17 +55,31 @@ import { useRouter } from 'vue-router'
 import { bnsQuestionData } from '~/mocks/specific/bns'
 import { useChoice } from '~/stores/choice'
 import type { BnsState } from '~/types/apply/specific/bns-state'
+import type { FormError } from '#ui/types'
 
 const choiceStore = useChoice()
-
 const router = useRouter()
 const { formId } = useRoute().query
-const { bnsForm } = useForm()
 const state = reactive<BnsState>({
   hrKnowledge: '',
   personalReflection: '',
   creativeThinking: ''
 })
+
+const errorMessage = 'Bạn cần điền vào trường này'
+
+const validate = (state: BnsState): FormError[] => {
+  const errors = []
+  if (!state.hrKnowledge)
+    errors.push({ path: 'hrKnowledge', message: errorMessage })
+  if (!state.personalReflection)
+    errors.push({ path: 'personalReflection', message: errorMessage })
+  if (!state.creativeThinking)
+    errors.push({ path: 'creativeThinking', message: errorMessage })
+  return errors
+}
+
+const { bnsForm } = useForm()
 
 const handleSubmit = async () => {
   await bnsForm(state, Number(formId))

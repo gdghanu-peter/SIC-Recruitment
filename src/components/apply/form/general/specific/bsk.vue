@@ -3,7 +3,12 @@
     <span class="uppercase text-form-grow font-bold text-3xl mb-8"
       >Phần 02</span
     >
-    <UForm :state="state" class="w-[410px] lg:w-[820px]" @submit="handleSubmit">
+    <UForm
+      :state="state"
+      class="w-[410px] lg:w-[820px]"
+      @submit="handleSubmit"
+      :validate="validate"
+    >
       <template v-for="question in bskQuestionData" :key="question.name">
         <UFormGroup
           class="mb-8"
@@ -16,7 +21,6 @@
             alt="Question Image"
             class="mb-4 w-full h-auto rounded-lg"
           />
-
           <UTextarea
             v-model="state[question.name]"
             :type="question.inputType === 'textarea' ? 'textarea' : 'text'"
@@ -34,7 +38,6 @@
           />
         </UFormGroup>
       </template>
-
       <div class="flex justify-center">
         <UButton
           class="bg-form uppercase mt-8"
@@ -52,12 +55,11 @@ import { useRouter } from 'vue-router'
 import { bskQuestionData } from '~/mocks/specific/bsk'
 import { useChoice } from '~/stores/choice'
 import type { BskState } from '~/types/apply/specific/bsk-state'
+import type { FormError } from '#ui/types'
 
 const choiceStore = useChoice()
-
 const router = useRouter()
 const { formId } = useRoute().query
-const { bskForm } = useForm()
 const state = reactive<BskState>({
   eventPlanning: '',
   riskTaking: '',
@@ -65,6 +67,25 @@ const state = reactive<BskState>({
   creativeExpression: '',
   philosophicalReflection: ''
 })
+
+const errorMessage = 'Bạn cần điền vào trường này'
+
+const validate = (state: BskState): FormError[] => {
+  const errors = []
+  if (!state.eventPlanning)
+    errors.push({ path: 'eventPlanning', message: errorMessage })
+  if (!state.riskTaking)
+    errors.push({ path: 'riskTaking', message: errorMessage })
+  if (!state.emotionalIntelligence)
+    errors.push({ path: 'emotionalIntelligence', message: errorMessage })
+  if (!state.creativeExpression)
+    errors.push({ path: 'creativeExpression', message: errorMessage })
+  if (!state.philosophicalReflection)
+    errors.push({ path: 'philosophicalReflection', message: errorMessage })
+  return errors
+}
+
+const { bskForm } = useForm()
 
 const handleSubmit = async () => {
   await bskForm(state, Number(formId))

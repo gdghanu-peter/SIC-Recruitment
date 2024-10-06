@@ -9,9 +9,9 @@
           Cảm ơn bạn đã quan tâm và ứng tuyển vào
           <span class="text-primary"> CLB Chứng khoán SIC - FTU</span>. Kết quả
           đăng ký sẽ được gửi tới bạn qua địa chỉ email sau khi kết thúc Vòng
-          01. Sau khi hoàn thành điền đơn ban đầu tiên, em có thể chọn Menu/
-          Tuyển thành viên để điền ban thứ 02 nhé! (Lưu ý: Em chỉ được điền chọn
-          tối đa 02 ban)
+          01. Sau khi hoàn thành điền đơn ban đầu tiên, bạn có thể chọn Menu/
+          Tuyển thành viên để điền ban thứ 02 nhé! (Lưu ý: Bạn chỉ được điền
+          chọn tối đa 02 ban)
         </p>
         <br />
         <p>
@@ -28,5 +28,5 @@
       </div>
     </div>
   </UContainer>
-  <Footer />
+  <Footer class="fixed bottom-0" />
 </template>
