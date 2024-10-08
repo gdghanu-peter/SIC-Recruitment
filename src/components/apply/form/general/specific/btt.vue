@@ -45,6 +45,7 @@
           type="submit"
           size="lg"
           label="Hoàn thành"
+          :disabled="loading"
         />
       </div>
     </UForm>
@@ -86,8 +87,14 @@ const validate = (state: BttState): FormError[] => {
   return errors
 }
 
+const loading = ref(false)
+
 const handleSubmit = async () => {
+  loading.value = true
+
   await bttForm(state, Number(formId))
+
+  loading.value = false
 
   if (choiceStore.second === '') {
     router.push('/ttv/thankyou')

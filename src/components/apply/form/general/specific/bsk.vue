@@ -44,6 +44,7 @@
           type="submit"
           size="lg"
           label="Hoàn thành"
+          :disabled="loading"
         />
       </div>
     </UForm>
@@ -87,8 +88,12 @@ const validate = (state: BskState): FormError[] => {
 
 const { bskForm } = useForm()
 
+const loading = ref(false)
+
 const handleSubmit = async () => {
+  loading.value = true
   await bskForm(state, Number(formId))
+  loading.value = false
   if (choiceStore.second === '') {
     router.push('/ttv/thankyou')
   } else {
