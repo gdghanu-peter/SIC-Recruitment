@@ -93,8 +93,9 @@ const { generalForm } = useForm()
 const loading = ref(false)
 
 const handleSubmit = async () => {
+  loading.value = true
   try {
-    loading.value = true
+
     const res = await generalForm(state)
 
     const firstChoice = choiceStore.first
@@ -103,7 +104,6 @@ const handleSubmit = async () => {
     router.replace(`/ttv/specific/${firstChoice}?formId=${res[0].id}`)
   } catch (error) {
     console.error('Lỗi khi gửi dữ liệu:', error)
-  } finally {
     loading.value = false
   }
 }
