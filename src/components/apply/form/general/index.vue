@@ -16,7 +16,6 @@
         :required="question.required"
         :name="question.name"
         :basis="question.basis"
-        :error="errors[question.name]"
         @change="handleChange"
       />
 
@@ -60,27 +59,13 @@ const errors = reactive<Record<keyof GeneralState, string>>(
   {} as Record<keyof GeneralState, string>
 )
 
-const validateForm = (): boolean => {
-  let isValid = true
-  for (const key in state) {
-    if (!state[key as keyof GeneralState]) {
-      errors[key as keyof GeneralState] = 'Bạn cần điền vào trường này'
-      isValid = false
-    } else {
-      errors[key as keyof GeneralState] = ''
-    }
-  }
-  return isValid
-}
 
 const { generalForm } = useForm()
 
 const loading = ref(false)
 
 const handleSubmit = async () => {
-  if (!validateForm()) {
-    return
-  }
+ 
 
   loading.value = true
   try {
