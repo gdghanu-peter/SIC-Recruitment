@@ -24,5 +24,5 @@
       </div>
     </div>
   </UContainer>
-  <Footer />
+  <Footer class="lg:fixed bottom-0" />
 </template>
