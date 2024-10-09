@@ -2,7 +2,7 @@
   <UContainer class="mt-[128px]">
     <CommonSignatureText content="Our story" class="text-center" />
     <div
-      class="flex gap-[60px] lg:flex-row flex-col items-center mt-8 lg:h-[300px] xl:h-[360px] items-start"
+      class="flex gap-[60px] lg:flex-row flex-col items-center mt-8 lg:h-[300px] xl:h-[360px]"
     >
       <div class="h-auto lg:max-h-full w-full lg:min-w-[400px] lg:w-auto">
         <iframe
