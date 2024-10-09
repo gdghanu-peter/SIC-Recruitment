@@ -3,38 +3,55 @@
     <span class="uppercase text-form-grow font-bold text-3xl">Phần 02</span>
     <UForm
       :state="state"
-      class="w-[410px] lg:w-[820px]"
+      class="w-[410px] lg:w-[820px] flex flex-col gap-12 items-center"
       @submit="handleSubmit"
       :validate="validate"
     >
-      <template v-for="question in bdnQuestionData" :key="question.name">
-        <UFormGroup
-          class="w-full mb-8"
-          :label="question.question"
-          :name="question.name"
-        >
-          <NuxtImg
-            v-if="question.image"
-            :src="question.image"
-            alt="Question Image"
-            class="mb-4 rounded-lg"
-          />
-          <UTextarea
-            v-model="state[question.name]"
-            :placeholder="question.placeholder"
-            :ui="{
-              rounded: 'rounded-lg',
-              placeholder: 'italic',
-              color: {
-                white: {
-                  outline:
-                    'shadow-sm bg-white text-gray-900 ring-primary ring-2 ring-inset ring-gray-300 focus:ring-2 focus:ring-red-400'
-                }
-              }
-            }"
-          />
-        </UFormGroup>
-      </template>
+      <UFormGroup
+        required
+        name="understandingExternalRelations"
+        label="Em hãy nêu hiểu biết của em về công việc của Ban Đối ngoại và bản thân em có những yếu tố gì để phù hợp với công việc này?"
+        class="w-full"
+      >
+        <UTextarea
+          placeholder="Hãy nhập câu trả lời của bạn"
+          color="pink"
+          class="bg-white rounded-lg"
+        />
+      </UFormGroup>
+      <UFormGroup
+        required
+        name="selfReflection"
+        label="Nếu ví bản thân em là một ca khúc, thì ca khúc ấy có tựa đề là gì? Vì sao?"
+        class="w-full"
+      >
+        <UTextarea
+          placeholder="Hãy nhập câu trả lời của bạn"
+          color="pink"
+          class="bg-white rounded-lg"
+        />
+      </UFormGroup>
+      <UFormGroup
+        required
+        name="problemSolving"
+        label="Khi được giao một nhiệm vụ mới mà em chưa có kinh nghiệm, em sẽ tiếp cận và giải quyết nó như thế nào?"
+        class="w-full"
+      >
+        <UTextarea
+          placeholder="Hãy nhập câu trả lời của bạn"
+          color="pink"
+          class="bg-white rounded-lg"
+        />
+      </UFormGroup>
+      <UFormGroup required name="emailWriting" label="" class="w-full">
+        <NuxtImg src="/bdn.png" class="mx-auto my-2 md:h-[300px] h-[150px]" />
+        <UTextarea
+          placeholder="Hãy nhập câu trả lời của bạn"
+          color="pink"
+          class="bg-white rounded-lg"
+        />
+      </UFormGroup>
+
       <div class="flex justify-center">
         <UButton
           class="bg-form uppercase mt-8"

@@ -5,39 +5,70 @@
     >
     <UForm
       :state="state"
-      class="w-[410px] lg:w-[820px]"
+      class="w-[410px] lg:w-[820px] flex flex-col items-center gap-12"
       @submit="handleSubmit"
-      :validate="validate"
     >
-      <template v-for="question in bskQuestionData" :key="question.name">
-        <UFormGroup
-          class="mb-8"
-          :label="question.question"
-          :name="question.name"
-        >
-          <NuxtImg
-            v-if="question.image"
-            :src="question.image"
-            alt="Question Image"
-            class="mb-4 w-full h-auto rounded-lg"
-          />
-          <UTextarea
-            v-model="state[question.name]"
-            :type="question.inputType === 'textarea' ? 'textarea' : 'text'"
-            :placeholder="question.placeholder"
-            :ui="{
-              rounded: 'rounded-lg',
-              placeholder: 'italic',
-              color: {
-                white: {
-                  outline:
-                    'shadow-sm bg-white text-gray-900 ring-primary ring-2 ring-inset ring-gray-300 focus:ring-2 focus:ring-red-400'
-                }
-              }
-            }"
-          />
-        </UFormGroup>
-      </template>
+      <UFormGroup
+        required
+        name="eventPlanning"
+        label="Theo em, những yếu tố đóng góp cho sự thành công của một sự kiện là gì? Em nghĩ yếu tố nào là quan trọng nhất?"
+        class="w-full"
+      >
+        <UTextarea
+          placeholder="Hãy nhập câu trả lời của bạn"
+          color="pink"
+          class="bg-white rounded-lg"
+        />
+      </UFormGroup>
+      <UFormGroup
+        required
+        name="riskTaking"
+        label="Giữa việc phát triển một dự án sáng tạo nhưng rủi ro lớn với một dự án ít đột phá nhưng trong vùng an toàn, em sẽ chọn phương án nào? Giải thích sự lựa chọn của em."
+        class="w-full"
+      >
+        <UTextarea
+          placeholder="Hãy nhập câu trả lời của bạn"
+          color="pink"
+          class="bg-white rounded-lg"
+        />
+      </UFormGroup>
+      <UFormGroup
+        required
+        name="emotionalIntelligence"
+        label="Trong bộ phim Inside Out 2, bộ máy cảm xúc của Riley được chi phối bởi 9 cảm xúc chính: Joy, Sadness, Disgust,  Anger, Fear, Anxiety, Envy, Ennui, Embarassment. Trong bộ máy cảm xúc của chính mình, em thấy bản thân được bộc lộ rõ nhất là qua cảm xúc nào? Nếu được chọn 2 cảm xúc để làm việc cùng trong thời gian chạy sự kiện, em sẽ chọn những cảm xúc nào? Vì sao?"
+        class="w-full"
+      >
+        <UTextarea
+          placeholder="Hãy nhập câu trả lời của bạn"
+          color="pink"
+          class="bg-white rounded-lg"
+        />
+      </UFormGroup>
+      <UFormGroup
+        required
+        name="creativeExpression"
+        label='Nếu em là một nhà hoạ sĩ, em sẽ vẽ bức tranh "Ban Sự Kiện" như thế nào?'
+        class="w-full"
+      >
+        <UTextarea
+          placeholder="Hãy nhập câu trả lời của bạn"
+          color="pink"
+          class="bg-white rounded-lg"
+        />
+      </UFormGroup>
+      <UFormGroup
+        required
+        name="philosophicalReflection"
+        label="Theo em, con người sống với nhau vì điều gì?"
+        class="w-full"
+      >
+        <UTextarea
+          placeholder="Hãy nhập câu trả lời của bạn"
+          color="pink"
+          class="bg-white rounded-lg"
+        />
+      </UFormGroup>
+
       <div class="flex justify-center">
         <UButton
           class="bg-form uppercase mt-8"
@@ -53,10 +84,8 @@
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
-import { bskQuestionData } from '~/mocks/specific/bsk'
 import { useChoice } from '~/stores/choice'
 import type { BskState } from '~/types/apply/specific/bsk-state'
-import type { FormError } from '#ui/types'
 
 const choiceStore = useChoice()
 const router = useRouter()
@@ -70,21 +99,6 @@ const state = reactive<BskState>({
 })
 
 const errorMessage = 'Bạn cần điền vào trường này'
-
-const validate = (state: BskState): FormError[] => {
-  const errors = []
-  if (!state.eventPlanning)
-    errors.push({ path: 'eventPlanning', message: errorMessage })
-  if (!state.riskTaking)
-    errors.push({ path: 'riskTaking', message: errorMessage })
-  if (!state.emotionalIntelligence)
-    errors.push({ path: 'emotionalIntelligence', message: errorMessage })
-  if (!state.creativeExpression)
-    errors.push({ path: 'creativeExpression', message: errorMessage })
-  if (!state.philosophicalReflection)
-    errors.push({ path: 'philosophicalReflection', message: errorMessage })
-  return errors
-}
 
 const { bskForm } = useForm()
 

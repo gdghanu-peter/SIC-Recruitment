@@ -5,39 +5,48 @@
     >
     <UForm
       :state="state"
-      class="w-[410px] lg:w-[820px]"
+      class="w-[410px] lg:w-[820px] flex flex-col items-center gap-12"
       @submit="handleSubmit"
       :validate="validate"
     >
-      <template v-for="question in bnsQuestionData" :key="question.name">
-        <UFormGroup
-          class="mb-8"
-          :label="question.question"
-          :name="question.name"
-        >
-          <NuxtImg
-            v-if="question.image"
-            :src="question.image"
-            alt="Question Image"
-            class="mb-4 w-auto mx-auto max-h-[200px] rounded-lg"
-          />
-          <UTextarea
-            v-model="state[question.name]"
-            :type="question.inputType === 'textarea' ? 'textarea' : 'text'"
-            :placeholder="question.placeholder"
-            :ui="{
-              rounded: 'rounded-lg',
-              placeholder: 'italic',
-              color: {
-                white: {
-                  outline:
-                    'shadow-sm bg-white text-gray-900 ring-primary ring-2 ring-inset ring-gray-300 focus:ring-2 focus:ring-red-400'
-                }
-              }
-            }"
-          />
-        </UFormGroup>
-      </template>
+      <UFormGroup
+        required
+        name="hrKnowledge"
+        label="Theo em, Ban Nhân sự trong CLB thực hiện những công việc gì? Em hãy nêu ba rủi ro có thể xảy ra với đầu việc Ban Nhân sự. Nếu có thể, hãy đưa ra hướng giải quyết hợp lý nhất cho trường hợp rủi ro đó."
+        class="w-full"
+      >
+        <UTextarea
+          placeholder="Hãy nhập câu trả lời của bạn"
+          color="pink"
+          class="bg-white rounded-lg"
+        />
+      </UFormGroup>
+      <UFormGroup
+        required
+        name="personalReflection"
+        label="Trong cuộc sống, bên cạnh những khoảnh khắc vui vẻ và may mắn, chắc hẳn ai cũng có những giây phút lạc lối hay vấp ngã. Cá nhân em, em đã bao giờ phải hối hận về những quyết định của mình từ trước đến nay chưa? Nếu có, hãy kể cho anh chị nghe được không?"
+        class="w-full"
+      >
+        <UTextarea
+          placeholder="Hãy nhập câu trả lời của bạn"
+          color="pink"
+          class="bg-white rounded-lg"
+        />
+      </UFormGroup>
+      <UFormGroup
+        required
+        name="creativeThinking"
+        label="Hình ảnh: Cốc nước giữa hồ nước. Em có suy nghĩ gì về bức hình này"
+        class="w-full"
+      >
+        <NuxtImg class="my-2 md:h-[300px] h-[150px] mx-auto" src="/bns.png" />
+        <UTextarea
+          placeholder="Hãy nhập câu trả lời của bạn"
+          color="pink"
+          class="bg-white rounded-lg"
+        />
+      </UFormGroup>
+
       <div class="flex justify-center">
         <UButton
           class="bg-form uppercase mt-8"
