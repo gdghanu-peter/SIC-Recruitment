@@ -73,7 +73,7 @@
                 </div>
             </ULink>
         </div>
-        <NuxtImg src="/question-banner.png"></NuxtImg>
+        <NuxtImg class="w-screen" src="/question-banner.png"></NuxtImg>
         <div class="p-8 mx-auto">
             <NuxtImg src="/cta.png" class="mx-auto w-[800px] mb-10"></NuxtImg>
             <div
