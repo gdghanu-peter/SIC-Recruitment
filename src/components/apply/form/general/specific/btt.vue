@@ -5,40 +5,58 @@
     >
     <UForm
       :state="state"
-      class="w-[410px] lg:w-[820px]"
-      :validate="validate"
+      class="w-[410px] lg:w-[820px] flex flex-col items-center gap-12"
       @submit="handleSubmit"
     >
-      <template v-for="question in bttQuestionData" :key="question.name">
-        <UFormGroup
-          class="mb-8"
-          :label="question.question"
-          :name="question.name"
-        >
-          <NuxtImg
-            v-if="question.image"
-            :src="question.image"
-            alt="Question Image"
-            class="mb-4 w-auto max-h-[200px] mx-auto rounded-lg"
-          />
-
-          <UTextarea
-            v-model="state[question.name]"
-            :type="question.inputType === 'textarea' ? 'textarea' : 'text'"
-            :placeholder="question.placeholder"
-            :ui="{
-              rounded: 'rounded-lg',
-              placeholder: 'italic',
-              color: {
-                white: {
-                  outline:
-                    'shadow-sm bg-white text-gray-900 ring-primary ring-2 ring-inset ring-gray-300 focus:ring-2 focus:ring-red-400'
-                }
-              }
-            }"
-          />
-        </UFormGroup>
-      </template>
+      <UFormGroup
+        required
+        name="communicationRole"
+        label="Theo em, vai trò của Ban Truyền thông trong CLB là gì?"
+        class="w-full"
+      >
+        <UTextarea
+          placeholder="Hãy nhập câu trả lời của bạn"
+          color="pink"
+          class="bg-white rounded-lg"
+        />
+      </UFormGroup>
+      <UFormGroup
+        required
+        name="contentAttraction"
+        label="Em bị thu hút bởi một bài đăng/content như thế nào?"
+        class="w-full"
+      >
+        <UTextarea
+          placeholder="Hãy nhập câu trả lời của bạn"
+          color="pink"
+          class="bg-white rounded-lg"
+        />
+      </UFormGroup>
+      <UFormGroup
+        required
+        name="mediaCampaign"
+        label="Em ấn tượng với chiến dịch truyền thông hay hoạt động truyền thông nào trên nền tảng xã hội? Hãy cho anh/chị biết lí do vì sao em ấn tượng nhé."
+        class="w-full"
+      >
+        <UTextarea
+          placeholder="Hãy nhập câu trả lời của bạn"
+          color="pink"
+          class="bg-white rounded-lg"
+        />
+      </UFormGroup>
+      <UFormGroup
+        required
+        name="messageInterpretation"
+        label="Theo em, bức ảnh dưới đây đang muốn truyền tải thông điệp gì? Hãy diễn tả lại thông điệp đó dưới góc nhìn của mình bằng bất cứ chất liệu nào mà mình muốn nhé (văn xuôi, thơ,...)"
+        class="w-full"
+      >
+        <NuxtImg src="/btt.png" class="mx-auto md:h-[300px] h-[150px] my-2" />
+        <UTextarea
+          placeholder="Hãy nhập câu trả lời của bạn"
+          color="pink"
+          class="bg-white rounded-lg"
+        />
+      </UFormGroup>
       <div class="flex justify-center">
         <UButton
           class="bg-form mx-auto uppercase mt-8"
@@ -54,7 +72,6 @@
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
-import { bttQuestionData } from '~/mocks/specific/btt'
 import { useChoice } from '~/stores/choice'
 import type { BttState } from '~/types/apply/specific/btt-state'
 import type { FormError } from '#ui/types'
@@ -73,19 +90,6 @@ const state = reactive<BttState>({
 })
 
 const errorMessage = 'Bạn cần điền vào trường này'
-
-const validate = (state: BttState): FormError[] => {
-  const errors = []
-  if (!state.communicationRole)
-    errors.push({ path: 'communicationRole', message: errorMessage })
-  if (!state.contentAttraction)
-    errors.push({ path: 'contentAttraction', message: errorMessage })
-  if (!state.messageInterpretation)
-    errors.push({ path: 'messageInterpretation', message: errorMessage })
-  if (!state.mediaCampaign)
-    errors.push({ path: 'mediaCampaign', message: errorMessage })
-  return errors
-}
 
 const loading = ref(false)
 

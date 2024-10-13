@@ -6,37 +6,48 @@
     <UForm
       :state="state"
       @submit="handleSubmit"
-      :validate="validate"
-      class="lg:w-[820px] w-[400px] flex flex-col lg:flex-row lg:flex-wrap"
+      class="lg:w-[820px] w-[400px] flex flex-col items-center gap-12"
     >
-      <template v-for="question in bcmQuestionData" :key="question.name">
-        <UFormGroup
-          class="w-full mb-8"
-          :label="question.question"
-          :name="question.name"
-        >
-          <NuxtImg
-            v-if="question.image"
-            :src="question.image"
-            alt="Question Image"
-            class="mb-4 w-auto mx-auto max-h-[200px] rounded-lg"
-          />
-          <UTextarea
-            v-model="state[question.name]"
-            :placeholder="question.placeholder"
-            :ui="{
-              rounded: 'rounded-lg',
-              placeholder: 'italic',
-              color: {
-                white: {
-                  outline:
-                    'shadow-sm bg-white text-gray-900 ring-primary ring-2 ring-inset ring-gray-300 focus:ring-2 focus:ring-red-400'
-                }
-              }
-            }"
-          />
-        </UFormGroup>
-      </template>
+      <UFormGroup
+        required
+        name="logicalThinking"
+        label="Em hãy điền đáp án ô (?) và giải thích quy luật dưới 100 chữ:"
+        class="w-full"
+      >
+        <NuxtImg
+          src="/forms/bcm.png"
+          class="mx-auto my-2 md:h-[300px] h-[150px]"
+        />
+        <UTextarea
+          placeholder="Hãy nhập câu trả lời của bạn"
+          color="pink"
+          class="bg-white rounded-lg"
+        />
+      </UFormGroup>
+      <UFormGroup
+        required
+        name="decisionMaking"
+        label="Em sẽ lựa chọn trở thành cổ đông sở hữu 10% cổ phần công ty có giá trị 100 triệu USD hay là sở hữu 50% cổ phần công ty có giá trị 20 triệu USD? Tại sao?"
+        class="w-full"
+      >
+        <UTextarea
+          placeholder="Hãy nhập câu trả lời của bạn"
+          color="pink"
+          class="bg-white rounded-lg"
+        />
+      </UFormGroup>
+      <UFormGroup
+        required
+        name="financialPlanning"
+        label="Nếu trúng xổ số với tổng giá trị 3 tỷ VNĐ, em sẽ sử dụng số tiền đó như thế nào?"
+        class="w-full"
+      >
+        <UTextarea
+          placeholder="Hãy nhập câu trả lời của bạn"
+          color="pink"
+          class="bg-white rounded-lg"
+        />
+      </UFormGroup>
 
       <div class="mx-auto">
         <UButton
@@ -53,10 +64,8 @@
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
-import { bcmQuestionData } from '~/mocks/specific/bcm'
 import { useChoice } from '~/stores/choice'
 import type { BcmState } from '~/types/apply/specific/bcm-state'
-import type { FormError } from '#ui/types'
 
 const choiceStore = useChoice()
 
@@ -69,17 +78,6 @@ const state = reactive<BcmState>({
 })
 
 const errorMessage = 'Bạn cần điền vào trường này'
-
-const validate = (state: BcmState): FormError[] => {
-  const errors = []
-  if (!state.logicalThinking)
-    errors.push({ path: 'logicalThinking', message: errorMessage })
-  if (!state.decisionMaking)
-    errors.push({ path: 'decisionMaking', message: errorMessage })
-  if (!state.financialPlanning)
-    errors.push({ path: 'financialPlanning', message: errorMessage })
-  return errors
-}
 
 const { bcmForm } = useForm()
 const loading = ref(false)
