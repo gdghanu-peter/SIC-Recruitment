@@ -14,7 +14,7 @@
     </div>
 
     <div
-      class="group-hover:flex hidden flex-col gap-2 items-center bg-white h-full px-4 py-4 transition-opacity duration-300 opacity-0 group-hover:opacity-100"
+      class="group-hover:flex hidden flex-col gap-2 items-center bg-white h-full py-4 transition-opacity duration-300 opacity-0 group-hover:opacity-100"
     >
       <span
         class="text-lg md:text-2xl uppercase font-bold text-glow-1 text-primary"

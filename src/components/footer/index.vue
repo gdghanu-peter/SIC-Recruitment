@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full footer flex fixed bottom-0 h-auto">
+  <div class="w-full footer flex h-auto">
     <UContainer class="flex flex-wrap items-center">
       <div class="py-6 w-1/2 md:w-5/12">
         <div class="flex flex-col w-full text-sm md:text-base md:gap-3">

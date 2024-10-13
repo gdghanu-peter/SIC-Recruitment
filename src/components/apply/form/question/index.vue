@@ -5,7 +5,7 @@
     :required="required"
     :class="widthClass"
   >
-    <div class="mx-5 flex flex-col gap-1 mt-9">
+    <div class="flex flex-col gap-1 mt-9">
       <label class="font-medium"
         >{{ question }}
         <span class="text-red-500 ml-0.5">{{ required && '*' }}</span>
