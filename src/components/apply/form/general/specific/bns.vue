@@ -16,6 +16,7 @@
         class="w-full"
       >
         <UTextarea
+          v-model="state.hrKnowledge"
           placeholder="Hãy nhập câu trả lời của bạn"
           color="pink"
           class="bg-white rounded-lg"
@@ -28,6 +29,7 @@
         class="w-full"
       >
         <UTextarea
+          v-model="state.personalReflection"
           placeholder="Hãy nhập câu trả lời của bạn"
           color="pink"
           class="bg-white rounded-lg"
@@ -41,6 +43,7 @@
       >
         <NuxtImg class="my-2 md:h-[300px] h-[150px] mx-auto" src="/bns.png" />
         <UTextarea
+          v-model="state.creativeThinking"
           placeholder="Hãy nhập câu trả lời của bạn"
           color="pink"
           class="bg-white rounded-lg"

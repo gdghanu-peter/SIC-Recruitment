@@ -14,6 +14,7 @@
         class="w-full"
       >
         <UTextarea
+          v-model="state.understandingExternalRelations"
           placeholder="Hãy nhập câu trả lời của bạn"
           color="pink"
           class="bg-white rounded-lg"
@@ -26,6 +27,7 @@
         class="w-full"
       >
         <UTextarea
+          v-model="state.selfReflection"
           placeholder="Hãy nhập câu trả lời của bạn"
           color="pink"
           class="bg-white rounded-lg"
@@ -38,6 +40,7 @@
         class="w-full"
       >
         <UTextarea
+          v-model="state.problemSolving"
           placeholder="Hãy nhập câu trả lời của bạn"
           color="pink"
           class="bg-white rounded-lg"
@@ -46,6 +49,7 @@
       <UFormGroup required name="emailWriting" label="" class="w-full">
         <NuxtImg src="/bdn.png" class="mx-auto my-2 md:h-[300px] h-[150px]" />
         <UTextarea
+          v-model="state.emailWriting"
           placeholder="Hãy nhập câu trả lời của bạn"
           color="pink"
           class="bg-white rounded-lg"

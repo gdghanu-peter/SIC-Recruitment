@@ -8,6 +8,7 @@
     >
       <UFormGroup required name="name" label="Họ và tên" class="w-full">
         <UInput
+          v-model="state.name"
           size="md"
           placeholder="Hãy nhập đầy đủ họ tên của bạn"
           color="pink"
@@ -15,10 +16,14 @@
         />
       </UFormGroup>
       <UFormGroup required name="dob" label="Ngày sinh" class="w-full">
-        <UInput size="md" color="pink" type="date" />
+        <UInput v-model="state.dob" size="md" color="pink" type="date" />
       </UFormGroup>
       <UFormGroup required name="gender" label="Giới tính" class="w-full">
-        <URadioGroup :options="genderOptions" color="red" />
+        <URadioGroup
+          v-model="state.gender"
+          :options="genderOptions"
+          color="red"
+        />
       </UFormGroup>
       <UFormGroup
         required
@@ -27,6 +32,7 @@
         class="w-full"
       >
         <UInput
+          v-model="state.highSchool"
           size="md"
           placeholder="Hãy nhập tên trường THPT của bạn"
           color="pink"
@@ -40,6 +46,7 @@
         class="w-full"
       >
         <UInput
+          v-model="state.major"
           size="md"
           placeholder="Ví dụ: Anh 01 - CLC KDQT - K63"
           color="pink"
@@ -53,6 +60,7 @@
         class="w-full"
       >
         <UInput
+          v-model="state.phoneNumber"
           size="md"
           placeholder="Hãy nhập số điện thoại của bạn"
           color="pink"
@@ -61,6 +69,7 @@
       </UFormGroup>
       <UFormGroup required name="email" label="Địa chỉ email" class="w-full">
         <UInput
+          v-model="state.email"
           size="md"
           placeholder="Hãy nhập địa chỉ email của bạn"
           color="pink"
@@ -69,6 +78,7 @@
       </UFormGroup>
       <UFormGroup required name="facebook" label="Link Facebook" class="w-full">
         <UInput
+          v-model="state.facebook"
           size="md"
           placeholder="Hãy đính link Facebook của bạn"
           color="pink"
@@ -82,6 +92,7 @@
         class="w-full"
       >
         <UInput
+          v-model="state.avatar"
           size="md"
           placeholder="Hãy upload một bức ảnh cá nhân của bạn"
           color="pink"
@@ -95,18 +106,7 @@
         class="w-full"
       >
         <UTextarea
-          placeholder="Hãy nhập câu trả lời của bạn"
-          color="pink"
-          class="bg-white rounded-lg"
-        />
-      </UFormGroup>
-      <UFormGroup
-        required
-        name="extracurriculars"
-        label="Bạn từng tham gia hoạt động ngoại khóa trước đây chưa? (Nếu có hãy nêu rõ: Tên sự kiện - Vai trò - Thành tích)"
-        class="w-full"
-      >
-        <UTextarea
+          v-model="state.extracurriculars"
           placeholder="Hãy nhập câu trả lời của bạn"
           color="pink"
           class="bg-white rounded-lg"
@@ -119,6 +119,7 @@
         class="w-full"
       >
         <UTextarea
+          v-model="state.strengthsWeaknesses"
           placeholder="Hãy nhập câu trả lời của bạn"
           color="pink"
           class="bg-white rounded-lg"
@@ -131,6 +132,7 @@
         class="w-full"
       >
         <UTextarea
+          v-model="state.uniqueness"
           placeholder="Hãy nhập câu trả lời của bạn"
           color="pink"
           class="bg-white rounded-lg"
@@ -143,6 +145,7 @@
         class="w-full"
       >
         <UTextarea
+          v-model="state.futurePlans"
           placeholder="Hãy nhập câu trả lời của bạn"
           color="pink"
           class="bg-white rounded-lg"
@@ -159,6 +162,7 @@
           class="mx-auto my-2 md:h-[300px] h-[150px]"
         />
         <UTextarea
+          v-model="state.photoThoughts"
           placeholder="Hãy nhập câu trả lời của bạn"
           color="pink"
           class="bg-white rounded-lg"
@@ -203,8 +207,6 @@ const state = reactive<GeneralState>({
   photoThoughts: ''
 })
 
-const errorMessage = 'Bạn cần điền vào trường này'
-
 const genderOptions = ref([
   {
     value: 'Nam',
@@ -222,10 +224,9 @@ const loading = ref(false)
 
 const handleSubmit = async () => {
   loading.value = true
+  console.log(state)
   try {
-
     const res = await generalForm(state)
-    loading.value = false
 
     const firstChoice = choiceStore.first
     choiceStore.setFirst('')
@@ -235,9 +236,5 @@ const handleSubmit = async () => {
     console.error('Lỗi khi gửi dữ liệu:', error)
     loading.value = false
   }
-}
-
-const handleChange = (value: any, name: keyof GeneralState) => {
-  state[name] = value
 }
 </script>

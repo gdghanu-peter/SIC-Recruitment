@@ -7,14 +7,16 @@
       :state="state"
       class="w-[410px] lg:w-[820px] flex flex-col items-center gap-12"
       @submit="handleSubmit"
+      :validate="validate"
     >
       <UFormGroup
         required
-        name="eventPlanning"
-        label="Theo em, những yếu tố đóng góp cho sự thành công của một sự kiện là gì? Em nghĩ yếu tố nào là quan trọng nhất?"
+        name="hrKnowledge"
+        label="Theo em, Ban Nhân sự trong CLB thực hiện những công việc gì? Em hãy nêu ba rủi ro có thể xảy ra với đầu việc Ban Nhân sự. Nếu có thể, hãy đưa ra hướng giải quyết hợp lý nhất cho trường hợp rủi ro đó."
         class="w-full"
       >
         <UTextarea
+          v-model="state.hrKnowledge"
           placeholder="Hãy nhập câu trả lời của bạn"
           color="pink"
           class="bg-white rounded-lg"
@@ -22,11 +24,12 @@
       </UFormGroup>
       <UFormGroup
         required
-        name="riskTaking"
-        label="Giữa việc phát triển một dự án sáng tạo nhưng rủi ro lớn với một dự án ít đột phá nhưng trong vùng an toàn, em sẽ chọn phương án nào? Giải thích sự lựa chọn của em."
+        name="personalReflection"
+        label="Trong cuộc sống, bên cạnh những khoảnh khắc vui vẻ và may mắn, chắc hẳn ai cũng có những giây phút lạc lối hay vấp ngã. Cá nhân em, em đã bao giờ phải hối hận về những quyết định của mình từ trước đến nay chưa? Nếu có, hãy kể cho anh chị nghe được không?"
         class="w-full"
       >
         <UTextarea
+          v-model="state.personalReflection"
           placeholder="Hãy nhập câu trả lời của bạn"
           color="pink"
           class="bg-white rounded-lg"
@@ -34,35 +37,13 @@
       </UFormGroup>
       <UFormGroup
         required
-        name="emotionalIntelligence"
-        label="Trong bộ phim Inside Out 2, bộ máy cảm xúc của Riley được chi phối bởi 9 cảm xúc chính: Joy, Sadness, Disgust,  Anger, Fear, Anxiety, Envy, Ennui, Embarassment. Trong bộ máy cảm xúc của chính mình, em thấy bản thân được bộc lộ rõ nhất là qua cảm xúc nào? Nếu được chọn 2 cảm xúc để làm việc cùng trong thời gian chạy sự kiện, em sẽ chọn những cảm xúc nào? Vì sao?"
+        name="creativeThinking"
+        label="Hình ảnh: Cốc nước giữa hồ nước. Em có suy nghĩ gì về bức hình này"
         class="w-full"
       >
+        <NuxtImg class="my-2 md:h-[300px] h-[150px] mx-auto" src="/bns.png" />
         <UTextarea
-          placeholder="Hãy nhập câu trả lời của bạn"
-          color="pink"
-          class="bg-white rounded-lg"
-        />
-      </UFormGroup>
-      <UFormGroup
-        required
-        name="creativeExpression"
-        label='Nếu em là một nhà hoạ sĩ, em sẽ vẽ bức tranh "Ban Sự Kiện" như thế nào?'
-        class="w-full"
-      >
-        <UTextarea
-          placeholder="Hãy nhập câu trả lời của bạn"
-          color="pink"
-          class="bg-white rounded-lg"
-        />
-      </UFormGroup>
-      <UFormGroup
-        required
-        name="philosophicalReflection"
-        label="Theo em, con người sống với nhau vì điều gì?"
-        class="w-full"
-      >
-        <UTextarea
+          v-model="state.creativeThinking"
           placeholder="Hãy nhập câu trả lời của bạn"
           color="pink"
           class="bg-white rounded-lg"
@@ -84,29 +65,39 @@
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
+import { bnsQuestionData } from '~/mocks/specific/bns'
 import { useChoice } from '~/stores/choice'
-import type { BskState } from '~/types/apply/specific/bsk-state'
+import type { BnsState } from '~/types/apply/specific/bns-state'
+import type { FormError } from '#ui/types'
 
 const choiceStore = useChoice()
 const router = useRouter()
 const { formId } = useRoute().query
-const state = reactive<BskState>({
-  eventPlanning: '',
-  riskTaking: '',
-  emotionalIntelligence: '',
-  creativeExpression: '',
-  philosophicalReflection: ''
+const state = reactive<BnsState>({
+  hrKnowledge: '',
+  personalReflection: '',
+  creativeThinking: ''
 })
 
 const errorMessage = 'Bạn cần điền vào trường này'
 
-const { bskForm } = useForm()
+const validate = (state: BnsState): FormError[] => {
+  const errors = []
+  if (!state.hrKnowledge)
+    errors.push({ path: 'hrKnowledge', message: errorMessage })
+  if (!state.personalReflection)
+    errors.push({ path: 'personalReflection', message: errorMessage })
+  if (!state.creativeThinking)
+    errors.push({ path: 'creativeThinking', message: errorMessage })
+  return errors
+}
 
+const { bnsForm } = useForm()
 const loading = ref(false)
 
 const handleSubmit = async () => {
   loading.value = true
-  await bskForm(state, Number(formId))
+  await bnsForm(state, Number(formId))
   loading.value = false
   if (choiceStore.second === '') {
     router.push('/ttv/thankyou')

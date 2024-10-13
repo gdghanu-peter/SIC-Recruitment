@@ -1,8 +1,6 @@
 <template>
   <div class="mt-8 pb-[100px] flex flex-col items-center">
-    <span class="uppercase text-form-grow font-bold text-3xl mb-8"
-      >Phần 02</span
-    >
+    <span class="uppercase text-form-grow font-bold text-3xl mb-8">Phần 02</span>
     <UForm
       :state="state"
       @submit="handleSubmit"
@@ -19,6 +17,7 @@
           class="mx-auto my-2 md:h-[300px] h-[150px]"
         />
         <UTextarea
+          v-model="state.logicalThinking"
           placeholder="Hãy nhập câu trả lời của bạn"
           color="pink"
           class="bg-white rounded-lg"
@@ -31,6 +30,7 @@
         class="w-full"
       >
         <UTextarea
+          v-model="state.decisionMaking"
           placeholder="Hãy nhập câu trả lời của bạn"
           color="pink"
           class="bg-white rounded-lg"
@@ -43,6 +43,7 @@
         class="w-full"
       >
         <UTextarea
+          v-model="state.financialPlanning"
           placeholder="Hãy nhập câu trả lời của bạn"
           color="pink"
           class="bg-white rounded-lg"
@@ -68,16 +69,14 @@ import { useChoice } from '~/stores/choice'
 import type { BcmState } from '~/types/apply/specific/bcm-state'
 
 const choiceStore = useChoice()
-
 const router = useRouter()
 const { formId } = useRoute().query
+
 const state = reactive<BcmState>({
   logicalThinking: '',
   decisionMaking: '',
   financialPlanning: ''
 })
-
-const errorMessage = 'Bạn cần điền vào trường này'
 
 const { bcmForm } = useForm()
 const loading = ref(false)
@@ -85,7 +84,6 @@ const loading = ref(false)
 const handleSubmit = async () => {
   loading.value = true
   await bcmForm(state, Number(formId))
-
 
   if (choiceStore.second === '') {
     router.push('/ttv/thankyou')

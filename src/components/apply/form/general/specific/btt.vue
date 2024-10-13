@@ -15,6 +15,7 @@
         class="w-full"
       >
         <UTextarea
+          v-model="state.communicationRole"
           placeholder="Hãy nhập câu trả lời của bạn"
           color="pink"
           class="bg-white rounded-lg"
@@ -27,6 +28,7 @@
         class="w-full"
       >
         <UTextarea
+          v-model="state.contentAttraction"
           placeholder="Hãy nhập câu trả lời của bạn"
           color="pink"
           class="bg-white rounded-lg"
@@ -39,6 +41,7 @@
         class="w-full"
       >
         <UTextarea
+          v-model="state.mediaCampaign"
           placeholder="Hãy nhập câu trả lời của bạn"
           color="pink"
           class="bg-white rounded-lg"
@@ -52,6 +55,7 @@
       >
         <NuxtImg src="/btt.png" class="mx-auto md:h-[300px] h-[150px] my-2" />
         <UTextarea
+          v-model="state.messageInterpretation"
           placeholder="Hãy nhập câu trả lời của bạn"
           color="pink"
           class="bg-white rounded-lg"
