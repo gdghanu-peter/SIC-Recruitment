@@ -88,19 +88,26 @@ const state = reactive<BdnState>({
 
 const errorMessage = 'Bạn cần điền vào trường này'
 
-const validate = (state: BdnState): FormError[] => {
-  const errors = []
-  if (!state.understandingExternalRelations)
+// Helper function to validate text areas with at least 2 characters
+const validateField = (field: string, fieldName: string, errors: FormError[]) => {
+  if (!field.trim()) {
+    errors.push({ path: fieldName, message: errorMessage })
+  } else if (field.trim().length < 2) {
     errors.push({
-      path: 'understandingExternalRelations',
-      message: errorMessage
+      path: fieldName,
+      message: 'Câu trả lời phải có ít nhất 2 ký tự'
     })
-  if (!state.selfReflection)
-    errors.push({ path: 'selfReflection', message: errorMessage })
-  if (!state.problemSolving)
-    errors.push({ path: 'problemSolving', message: errorMessage })
-  if (!state.emailWriting)
-    errors.push({ path: 'emailWriting', message: errorMessage })
+  }
+}
+
+const validate = (state: BdnState): FormError[] => {
+  const errors: FormError[] = []
+  
+  validateField(state.understandingExternalRelations, 'understandingExternalRelations', errors)
+  validateField(state.selfReflection, 'selfReflection', errors)
+  validateField(state.problemSolving, 'problemSolving', errors)
+  validateField(state.emailWriting, 'emailWriting', errors)
+
   return errors
 }
 
@@ -120,3 +127,4 @@ const handleSubmit = async () => {
   }
 }
 </script>
+

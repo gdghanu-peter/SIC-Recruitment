@@ -11,12 +11,12 @@
     >
       <UFormGroup
         required
-        name="hrKnowledge"
-        label="Theo em, Ban Nhân sự trong CLB thực hiện những công việc gì? Em hãy nêu ba rủi ro có thể xảy ra với đầu việc Ban Nhân sự. Nếu có thể, hãy đưa ra hướng giải quyết hợp lý nhất cho trường hợp rủi ro đó."
+        name="eventPlanning"
+        label="Theo em, những yếu tố đóng góp cho sự thành công của một sự kiện là gì? Em nghĩ yếu tố nào là quan trọng nhất?"
         class="w-full"
       >
         <UTextarea
-          v-model="state.hrKnowledge"
+          v-model="state.eventPlanning"
           placeholder="Hãy nhập câu trả lời của bạn"
           color="pink"
           class="bg-white rounded-lg"
@@ -24,12 +24,12 @@
       </UFormGroup>
       <UFormGroup
         required
-        name="personalReflection"
-        label="Trong cuộc sống, bên cạnh những khoảnh khắc vui vẻ và may mắn, chắc hẳn ai cũng có những giây phút lạc lối hay vấp ngã. Cá nhân em, em đã bao giờ phải hối hận về những quyết định của mình từ trước đến nay chưa? Nếu có, hãy kể cho anh chị nghe được không?"
+        name="riskTaking"
+        label="Giữa việc phát triển một dự án sáng tạo nhưng rủi ro lớn với một dự án ít đột phá nhưng trong vùng an toàn, em sẽ chọn phương án nào? Giải thích sự lựa chọn của em."
         class="w-full"
       >
         <UTextarea
-          v-model="state.personalReflection"
+          v-model="state.riskTaking"
           placeholder="Hãy nhập câu trả lời của bạn"
           color="pink"
           class="bg-white rounded-lg"
@@ -37,13 +37,38 @@
       </UFormGroup>
       <UFormGroup
         required
-        name="creativeThinking"
-        label="Hình ảnh: Cốc nước giữa hồ nước. Em có suy nghĩ gì về bức hình này"
+       name="emotionalIntelligence"
+        label="Trong bộ phim Inside Out 2, bộ máy cảm xúc của Riley được chi phối bởi 9 cảm xúc chính: Joy, Sadness, Disgust,  Anger, Fear, Anxiety, Envy, Ennui, Embarassment. Trong bộ máy cảm xúc của chính mình, em thấy bản thân được bộc lộ rõ nhất là qua cảm xúc nào? Nếu được chọn 2 cảm xúc để làm việc cùng trong thời gian chạy sự kiện, em sẽ chọn những cảm xúc nào? Vì sao?"
         class="w-full"
       >
-        <NuxtImg class="my-2 md:h-[300px] h-[150px] mx-auto" src="/bns.png" />
         <UTextarea
-          v-model="state.creativeThinking"
+          v-model="state.emotionalIntelligence"
+          placeholder="Hãy nhập câu trả lời của bạn"
+          color="pink"
+          class="bg-white rounded-lg"
+        />
+      </UFormGroup>
+      <UFormGroup
+        required
+        name="creativeExpression"
+        label='Nếu em là một nhà hoạ sĩ, em sẽ vẽ bức tranh "Ban Sự Kiện" như thế nào?'
+        class="w-full"
+      >
+        <UTextarea
+        v-model="state.creativeExpression"
+          placeholder="Hãy nhập câu trả lời của bạn"
+          color="pink"
+          class="bg-white rounded-lg"
+        />
+      </UFormGroup>
+      <UFormGroup
+        required
+        name="philosophicalReflection"
+        label='Nếu em là một nhà hoạ sĩ, em sẽ vẽ bức tranh "Ban Sự Kiện" như thế nào?'
+        class="w-full"
+      >
+        <UTextarea
+        v-model="state.philosophicalReflection"
           placeholder="Hãy nhập câu trả lời của bạn"
           color="pink"
           class="bg-white rounded-lg"
@@ -65,39 +90,60 @@
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
-import { bnsQuestionData } from '~/mocks/specific/bns'
 import { useChoice } from '~/stores/choice'
-import type { BnsState } from '~/types/apply/specific/bns-state'
+import type { BskState } from '~/types/apply/specific/bsk-state'
 import type { FormError } from '#ui/types'
 
 const choiceStore = useChoice()
 const router = useRouter()
 const { formId } = useRoute().query
-const state = reactive<BnsState>({
-  hrKnowledge: '',
-  personalReflection: '',
-  creativeThinking: ''
+const state = reactive<BskState>({
+  eventPlanning: '',
+  riskTaking: '',
+  emotionalIntelligence: '',
+  creativeExpression: '',
+  philosophicalReflection: ''
 })
 
 const errorMessage = 'Bạn cần điền vào trường này'
 
-const validate = (state: BnsState): FormError[] => {
-  const errors = []
-  if (!state.hrKnowledge)
-    errors.push({ path: 'hrKnowledge', message: errorMessage })
-  if (!state.personalReflection)
-    errors.push({ path: 'personalReflection', message: errorMessage })
-  if (!state.creativeThinking)
-    errors.push({ path: 'creativeThinking', message: errorMessage })
+// Helper function to validate text areas with at least 2 characters
+const validateField = (field: string, fieldName: string, errors: FormError[]) => {
+  if (!field.trim()) {
+    errors.push({ path: fieldName, message: errorMessage })
+  } else if (field.trim().length < 2) {
+    errors.push({
+      path: fieldName,
+      message: 'Câu trả lời phải có ít nhất 2 ký tự'
+    })
+  }
+}
+
+const validate = (state: BskState): FormError[] => {
+  const errors: FormError[] = []
+  
+  validateField(state.eventPlanning, 'eventPlanning', errors)
+  validateField(state.riskTaking, 'riskTaking', errors)
+  validateField(state.emotionalIntelligence, 'emotionalIntelligence', errors)
+  validateField(state.creativeExpression, 'creativeExpression', errors)
+  validateField(state.philosophicalReflection, 'philosophicalReflection', errors)
+
   return errors
 }
 
-const { bnsForm } = useForm()
+const { bskForm } = useForm()
 const loading = ref(false)
 
 const handleSubmit = async () => {
   loading.value = true
-  await bnsForm(state, Number(formId))
+  const errors = validate(state)
+  if (errors.length > 0) {
+    // Handle errors (e.g., display error messages in UI)
+    loading.value = false
+    return
+  }
+
+  await bskForm(state, Number(formId))
   loading.value = false
   if (choiceStore.second === '') {
     router.push('/ttv/thankyou')
@@ -108,3 +154,4 @@ const handleSubmit = async () => {
   }
 }
 </script>
+

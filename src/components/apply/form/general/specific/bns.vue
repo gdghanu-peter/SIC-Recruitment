@@ -82,15 +82,24 @@ const state = reactive<BnsState>({
 const errorMessage = 'Bạn cần điền vào trường này'
 
 const validate = (state: BnsState): FormError[] => {
-  const errors = []
-  if (!state.hrKnowledge)
-    errors.push({ path: 'hrKnowledge', message: errorMessage })
-  if (!state.personalReflection)
-    errors.push({ path: 'personalReflection', message: errorMessage })
-  if (!state.creativeThinking)
-    errors.push({ path: 'creativeThinking', message: errorMessage })
+  const errors: FormError[] = []
+  
+  // Helper function to validate text areas
+  const validateField = (field: string, fieldName: string) => {
+    if (!field.trim()) {
+      errors.push({ path: fieldName, message: errorMessage })
+    } else if (field.trim().length < 2) {
+      errors.push({ path: fieldName, message: 'Câu trả lời phải có ít nhất 2 ký tự' })
+    }
+  }
+
+  validateField(state.hrKnowledge, 'hrKnowledge')
+  validateField(state.personalReflection, 'personalReflection')
+  validateField(state.creativeThinking, 'creativeThinking')
+
   return errors
 }
+
 
 const { bnsForm } = useForm()
 const loading = ref(false)

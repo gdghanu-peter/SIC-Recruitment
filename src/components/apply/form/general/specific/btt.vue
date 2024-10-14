@@ -79,8 +79,8 @@ import { useRouter } from 'vue-router'
 import { useChoice } from '~/stores/choice'
 import type { BttState } from '~/types/apply/specific/btt-state'
 import type { FormError } from '#ui/types'
-const choiceStore = useChoice()
 
+const choiceStore = useChoice()
 const router = useRouter()
 const { formId } = useRoute().query
 
@@ -95,13 +95,41 @@ const state = reactive<BttState>({
 
 const errorMessage = 'Bạn cần điền vào trường này'
 
+// Helper function to validate fields with at least 2 characters
+const validateField = (field: string, fieldName: string, errors: FormError[]) => {
+  if (!field.trim()) {
+    errors.push({ path: fieldName, message: errorMessage })
+  } else if (field.trim().length < 2) {
+    errors.push({
+      path: fieldName,
+      message: 'Câu trả lời phải có ít nhất 2 ký tự'
+    })
+  }
+}
+
+const validate = (state: BttState): FormError[] => {
+  const errors: FormError[] = []
+
+  validateField(state.communicationRole, 'communicationRole', errors)
+  validateField(state.contentAttraction, 'contentAttraction', errors)
+  validateField(state.mediaCampaign, 'mediaCampaign', errors)
+  validateField(state.messageInterpretation, 'messageInterpretation', errors)
+
+  return errors
+}
+
 const loading = ref(false)
 
 const handleSubmit = async () => {
   loading.value = true
+  const errors = validate(state)
+  if (errors.length > 0) {
+    // Handle errors (e.g., display error messages in UI)
+    loading.value = false
+    return
+  }
 
   await bttForm(state, Number(formId))
-
   loading.value = false
 
   if (choiceStore.second === '') {
@@ -113,3 +141,4 @@ const handleSubmit = async () => {
   }
 }
 </script>
+

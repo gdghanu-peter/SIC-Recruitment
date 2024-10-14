@@ -67,6 +67,7 @@
 import { useRouter } from 'vue-router'
 import { useChoice } from '~/stores/choice'
 import type { BcmState } from '~/types/apply/specific/bcm-state'
+import type { FormError } from '#ui/types'
 
 const choiceStore = useChoice()
 const router = useRouter()
@@ -78,11 +79,42 @@ const state = reactive<BcmState>({
   financialPlanning: ''
 })
 
+const errorMessage = 'Bạn cần điền vào trường này'
+
+// Helper function to validate text areas with at least 2 characters
+const validateField = (field: string, fieldName: string, errors: FormError[]) => {
+  if (!field.trim()) {
+    errors.push({ path: fieldName, message: errorMessage })
+  } else if (field.trim().length < 2) {
+    errors.push({
+      path: fieldName,
+      message: 'Câu trả lời phải có ít nhất 2 ký tự'
+    })
+  }
+}
+
+const validate = (state: BcmState): FormError[] => {
+  const errors: FormError[] = []
+  
+  validateField(state.logicalThinking, 'logicalThinking', errors)
+  validateField(state.decisionMaking, 'decisionMaking', errors)
+  validateField(state.financialPlanning, 'financialPlanning', errors)
+
+  return errors
+}
+
 const { bcmForm } = useForm()
 const loading = ref(false)
 
 const handleSubmit = async () => {
   loading.value = true
+  const errors = validate(state)
+  if (errors.length > 0) {
+    // Handle errors (e.g., display error messages in UI)
+    loading.value = false
+    return
+  }
+  
   await bcmForm(state, Number(formId))
 
   if (choiceStore.second === '') {
@@ -94,3 +126,4 @@ const handleSubmit = async () => {
   }
 }
 </script>
+
