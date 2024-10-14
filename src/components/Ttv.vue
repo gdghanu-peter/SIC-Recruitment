@@ -1,9 +1,12 @@
 <template>
-    <div>
+    <div class="fixed w-screen top-0 min-h-screen bg-no-repeat bg-center">
+            <img class="bottom-0 w-screen h-screen object-cover" src="/Background.png"></img>
+        </div>
+    <div class="relative">
         <ApplyHeader />
-        <div class="lg:h-screen bg-cover pt-[64px] items-center bg-center flex flex-col-reverse lg:flex-row mx-auto justify-evenly font-montserrat"
-            :style="{ backgroundImage: 'url(/Background.png)' }">
-
+        
+        <div class="lg:h-screen  pt-[64px] items-center flex flex-col-reverse lg:flex-row mx-auto justify-evenly font-montserrat"
+            >
             <div class="text-center mt-6">
                 <NuxtImg class="w-[380px] lg:w-[500px] mx-auto mb-6" src="/main.png"></NuxtImg>
                 <div
@@ -87,7 +90,7 @@
             <NuxtImg src="/timeline.png" class="mx-auto w-[1200px] mb-10"></NuxtImg>
         </div>
         <Footer />
-    </div>
+</div>
 </template>
 
 <script setup lang="ts">
