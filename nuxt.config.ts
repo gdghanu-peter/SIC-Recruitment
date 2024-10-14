@@ -12,7 +12,17 @@ export default defineNuxtConfig({
   colorMode: {
     preference: 'light'
   },
-  
+  app: {
+    head: {
+      link: [
+        {
+          rel: 'icon',
+          type: 'image/png',
+          href: '/favicon.png', // Path to your favicon
+        },
+      ],
+    },
+  },
   css: ['~/assets/css/globals.css', '~/assets/css/variables.css'],
   compatibilityDate: '2024-07-28',
   pinia: {
