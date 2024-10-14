@@ -64,7 +64,7 @@
       <UFormGroup
         required
         name="philosophicalReflection"
-        label='Nếu em là một nhà hoạ sĩ, em sẽ vẽ bức tranh "Ban Sự Kiện" như thế nào?'
+        label='heo em, con người sống với nhau vì điều gì?'
         class="w-full"
       >
         <UTextarea
