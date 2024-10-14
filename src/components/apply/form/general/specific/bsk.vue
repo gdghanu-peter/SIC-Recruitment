@@ -64,7 +64,7 @@
       <UFormGroup
         required
         name="philosophicalReflection"
-        label='heo em, con người sống với nhau vì điều gì?'
+        label='Theo em, con người sống với nhau vì điều gì?'
         class="w-full"
       >
         <UTextarea
