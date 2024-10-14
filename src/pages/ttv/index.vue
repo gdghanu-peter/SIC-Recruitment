@@ -1,3 +1,6 @@
 <template>
-  <Ttv />
+  <div>
+    <Ttv />
+  </div>
+
 </template>
