@@ -89,11 +89,36 @@
             </div>
             <NuxtImg src="/timeline.png" class="mx-auto w-[1200px] mb-10"></NuxtImg>
         </div>
+        <div class=" w-screen bg-cover py-4" :style="{ backgroundImage: 'url(/bg-linear.png)' }">
+        <UCarousel ref="carouselRef" v-slot="{ item }" :items="items" :ui="{ item: 'basis-full h-fit justify-center' }" class="rounded-lg overflow-hidden">
+    <img :src="item" draggable="false">
+  </UCarousel></div>
         <Footer />
 </div>
 </template>
 
 <script setup lang="ts">
+
+const items = [
+  '/gold.png',
+  '/silver.png',
+  '/bronze.png'
+]
+
+const carouselRef = ref()
+
+onMounted(() => {
+  setInterval(() => {
+    if (!carouselRef.value) return
+
+    if (carouselRef.value.page === carouselRef.value.pages) {
+      return carouselRef.value.select(0)
+    }
+
+    carouselRef.value.next()
+  }, 3000)
+})
+
 // Target date: 23:59:59, 23/10/2024
 const targetDate = new Date('2024-10-23T23:59:59').getTime();
 const timeDemo = ref([0, 0, 0, 0]); // Days, Hours, Minutes, Seconds
