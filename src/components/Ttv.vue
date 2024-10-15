@@ -63,7 +63,7 @@
             </div>
         </div>
         <div class="p-6 lg:p-20 mx-auto w-fit mb-16 bg-[#d9d9d9]/10 rounded-[22px] shadow-inner backdrop-blur-[129.40px]">
-            <div class="h-auto lg:max-h-full w-full lg:min-w-[400px] lg:w-auto mb-8">
+            <div class=" lg:max-h-full w-full lg:min-w-[400px] lg:w-auto mb-8">
                 <iframe class="hidden lg:block mx-auto max-h-full max-w-full" width="800" height="500"
                     src="https://www.youtube.com/embed/nTrX8jEARbU" title="VID CLB" frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

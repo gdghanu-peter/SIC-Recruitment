@@ -1,7 +1,7 @@
 <template>
   <UContainer class="w-screen h-screen justify-center items-center flex">
     <div class="apply w-[600px] p-10 flex flex-col items-center">
-      <h1 class="font-bold text-form text-2xl uppercase">
+      <h1 class="font-bold text-form text-center text-2xl uppercase">
         Bạn chọn đăng ký vào ban
       </h1>
       <!-- <span class="text-sm italic text-gray-700">

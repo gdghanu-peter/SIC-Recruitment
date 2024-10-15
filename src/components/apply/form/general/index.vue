@@ -5,6 +5,7 @@
       :state="state"
       class="w-[410px] lg:w-[820px] flex flex-col items-center gap-12"
       @submit="handleSubmit"
+      :validate="validate"
     >
       <UFormGroup required name="name" label="Họ và tên" class="w-full">
         <UInput
@@ -183,9 +184,10 @@
 </template>
 
 <script setup lang="ts">
-import { useForm } from '~/composables/useForm'
+import { useRouter } from 'vue-router'
 import { useChoice } from '~/stores/choice'
 import type { GeneralState } from '~/types/apply/general-state'
+import type { FormError } from '#ui/types'
 
 const choiceStore = useChoice()
 const router = useRouter()
@@ -206,7 +208,6 @@ const state = reactive<GeneralState>({
   futurePlans: '',
   photoThoughts: ''
 })
-
 const genderOptions = ref([
   {
     value: 'Nam',
@@ -217,24 +218,52 @@ const genderOptions = ref([
     label: 'Nữ'
   }
 ])
+const errorMessage = 'Bạn cần điền vào trường này'
+
+const validate = (state: GeneralState): FormError[] => {
+  const errors = []
+  
+  // Check if required fields are empty
+  if (!state.name) errors.push({ path: 'name', message: errorMessage })
+  if (!state.dob) errors.push({ path: 'dob', message: errorMessage })
+  if (!state.gender) errors.push({ path: 'gender', message: errorMessage })
+  if (!state.highSchool) errors.push({ path: 'highSchool', message: errorMessage })
+  if (!state.major) errors.push({ path: 'major', message: errorMessage })
+  if (!state.phoneNumber) errors.push({ path: 'phoneNumber', message: errorMessage })
+  if (!state.email) errors.push({ path: 'email', message: errorMessage })
+  if (!state.facebook) errors.push({ path: 'facebook', message: errorMessage })
+  if (!state.avatar) errors.push({ path: 'avatar', message: errorMessage })
+  if (!state.extracurriculars) errors.push({ path: 'extracurriculars', message: errorMessage })
+  if (!state.strengthsWeaknesses) errors.push({ path: 'strengthsWeaknesses', message: errorMessage })
+  if (!state.uniqueness) errors.push({ path: 'uniqueness', message: errorMessage })
+  if (!state.futurePlans) errors.push({ path: 'futurePlans', message: errorMessage })
+  if (!state.photoThoughts) errors.push({ path: 'photoThoughts', message: errorMessage })
+
+  return errors
+}
 
 const { generalForm } = useForm()
-
 const loading = ref(false)
 
 const handleSubmit = async () => {
+  const errors = validate(state)
+  
+  if (errors.length > 0) {
+    console.log('Validation errors:', errors)
+    return // Stop submission if there are errors
+  }
+
   loading.value = true
-  console.log(state)
   try {
     const res = await generalForm(state)
-
     const firstChoice = choiceStore.first
     choiceStore.setFirst('')
-
     router.replace(`/ttv/specific/${firstChoice}?formId=${res[0].id}`)
   } catch (error) {
     console.error('Lỗi khi gửi dữ liệu:', error)
+  } finally {
     loading.value = false
   }
 }
 </script>
+
