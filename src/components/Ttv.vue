@@ -18,19 +18,20 @@
                     một kho tàng của những thành tựu, kinh nghiệm, và cả những cơ hội mà ta đã gieo mầm – tất cả chính
                     là nền móng cho những giấc mơ lớn lao ta đang dần hiện thực hóa.<br /></div>
                     
-                <div class=" text-center text-[#c42b2f] text-lg lg:text-xl font-bold mb-4 lg:mb-6">ĐẾM NGƯỢC THỜI GIAN ĐĂNG KÝ
+                <div class=" text-center text-[#c42b2f] text-md lg:text-xl font-bold mb-2 lg:mb-6">ĐẾM NGƯỢC THỜI GIAN ĐĂNG KÝ
                     CÒN LẠI</div>
-                <div class="flex gap-4 lg:gap-8 mb-16 justify-center">
+                <div class="flex gap-4 lg:gap-8 mb-10 lg:mb-16 justify-center">
                     <div v-for="(item, index) in timeDemo"
                         class="relative text-center  text-[#ab0000] text-2xl font-bold font-montserrat" :key="index">
                         <h1 class="absolute z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                             {{ item }}
                         </h1>
                         <NuxtImg class="w-[80px]" src="/Countdown.png" alt="" />
-                        <p class="left-1/2 -translate-x-1/2  mt-2 text-[18px] font-semibold absolute ">
+                        <p class="left-1/2 -translate-x-1/2  mt-2 text-xs lg:text-[18px] font-semibold absolute ">
                             {{ timeLabels[index] }}
                         </p>
                     </div>
+                    
                 </div>
                 <ULink class="lg:hidden" to="/ttv/choose">
                     <button
@@ -41,7 +42,7 @@
 
             </div>
             <div class="flex flex-col justify-center items-center">
-                <NuxtImg class="w-[280px] lg:w-[400px] mb-4" src="/rocket.png" alt="" />
+                <NuxtImg class="w-[230px] lg:w-[400px] lg:mb-4" src="/rocket.png" alt="" />
                 <ULink class="hidden lg:block" to="/ttv/choose">
                     <button
                         class="rounded-full border-2 text-[#BC0303] border-[#FFBCE6] hover:border-[#FF50E5] px-4 py-2 text-2xl font-bold">
