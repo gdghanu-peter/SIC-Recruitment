@@ -5,19 +5,20 @@
     <div class="relative">
         <ApplyHeader />
         
-        <div class="lg:h-screen  pt-[64px] items-center flex flex-col-reverse lg:flex-row mx-auto justify-evenly font-montserrat"
+        <div class="lg:h-screen  pt-[84px] items-center flex flex-col-reverse lg:flex-row mx-auto justify-evenly font-montserrat"
             >
             <div class="text-center mt-6">
-                <NuxtImg class="w-[380px] lg:w-[500px] mx-auto mb-6" src="/main.png"></NuxtImg>
+                <NuxtImg class="w-[380px] lg:w-[500px] mx-auto mb-4 lg:mb-6" src="/main.png"></NuxtImg>
                 <div
-                    class="mb-4 mx-4 lg:w-[540px] lg:mx-auto text-justify text-[#c42b2f] text-sm font-semibold leading-relaxed">
+                    class="mb-4 w-[341px]  lg:w-[540px] mx-auto text-justify text-[#c42b2f] text-xs font-semibold">
                     “Con người sinh ra không phải để tan biến đi như một hạt cát vô danh" – mỗi chúng ta đều mang trong
                     mình khả năng tiềm tàng để kiến tạo dấu ấn riêng biệt trong hành trình của cuộc đời. Đừng để mỗi
                     ngày trôi qua một cách vô định, hãy khám phá, tìm tòi, hãy học hỏi, tích lũy và khi ta dấn thân, mỗi
                     bước đi hôm nay không chỉ là một dấu ấn tạm thời, mà chính là hành trang cho một "Future pocket" –
                     một kho tàng của những thành tựu, kinh nghiệm, và cả những cơ hội mà ta đã gieo mầm – tất cả chính
                     là nền móng cho những giấc mơ lớn lao ta đang dần hiện thực hóa.<br /></div>
-                <div class=" text-center text-[#c42b2f] text-lg lg:text-xl font-bold mb-6">ĐẾM NGƯỢC THỜI GIAN ĐĂNG KÝ
+                    
+                <div class=" text-center text-[#c42b2f] text-lg lg:text-xl font-bold mb-4 lg:mb-6">ĐẾM NGƯỢC THỜI GIAN ĐĂNG KÝ
                     CÒN LẠI</div>
                 <div class="flex gap-4 lg:gap-8 mb-16 justify-center">
                     <div v-for="(item, index) in timeDemo"
@@ -31,20 +32,27 @@
                         </p>
                     </div>
                 </div>
+                <ULink class="lg:hidden" to="/ttv/choose">
+                    <button
+                        class="mb-4 rounded-full border-2 text-[#BC0303] border-[#FFBCE6] hover:border-[#FF50E5] px-4 py-2 text-2xl font-bold">
+                        ĐĂNG KÝ NGAY
+                    </button>
+                </ULink>
 
             </div>
             <div class="flex flex-col justify-center items-center">
-                <NuxtImg class="w-[380px] lg:w-[400px] mb-4" src="/rocket.png" alt="" />
-                <ULink to="/ttv/choose">
+                <NuxtImg class="w-[280px] lg:w-[400px] mb-4" src="/rocket.png" alt="" />
+                <ULink class="hidden lg:block" to="/ttv/choose">
                     <button
                         class="rounded-full border-2 text-[#BC0303] border-[#FFBCE6] hover:border-[#FF50E5] px-4 py-2 text-2xl font-bold">
                         ĐĂNG KÝ NGAY
                     </button>
                 </ULink>
             </div>
+            
         </div>
-        <div class="h-screen flex justify-center items-center">
-            <div class="w-[800px] p-4 text-justify text-[#c42b2f] text-sm lg:text-lg font-semibold font-montserrat leading-9"
+        <div class="lg:h-screen m-4 flex justify-center items-center">
+            <div class="max-w-[755px] py-6 px-4 bg-top bg-cover text-justify text-[#c42b2f] text-xs lg:text-lg font-semibold font-montserrat "
                 :style="{ backgroundImage: 'url(/bgquote.png)' }">
                 Chúng ta không trưởng thành chỉ nhờ những năm tháng đã sống, mà nhờ những trải nghiệm mà ta đã tích lũy.
                 Hiểu được ý nghĩa sâu sắc ấy, các SICers luôn khát khao tìm kiếm tri thức, không ngừng học hỏi và trau
@@ -65,7 +73,7 @@
                     referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
             <div
-                class="lg:w-[759px] mb-8 text-justify text-[#c42b2f] text-sm font-semibold font-montserrat leading-[27px]">
+                class="lg:w-[759px] mb-8 text-justify text-[#c42b2f] text-xs font-semibold font-montserrat leading-[27px]">
                 Trải qua hơn 17 năm không ngừng kiến tạo và phát triển, SIC tự hào mang tới môi trường đào tạo năng
                 động,
                 chuyên nghiệp, lan tỏa đam mê của hàng nghìn nhà đầu tư trẻ qua các sự kiện chuyên môn thường niên, trở
@@ -84,7 +92,7 @@
         <div class="p-8 mx-auto">
             <NuxtImg src="/cta.png" class="mx-auto w-[800px] mb-10"></NuxtImg>
             <div
-                class="p-3 mb-10 rounded-full w-fit mx-auto bg-[#c42b2f] text-white text-base lg:text-[31.42px] font-bold font-montserrat">
+                class="p-3 mb-10 rounded-full w-fit mx-auto bg-[#c42b2f] text-white text-xs lg:text-[31.42px] font-bold font-montserrat">
                 TIMELINE TUYỂN THÀNH VIÊN GEN XVIII
             </div>
             <NuxtImg src="/timeline.png" class="mx-auto w-[1200px] mb-10"></NuxtImg>

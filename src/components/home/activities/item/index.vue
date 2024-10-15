@@ -23,7 +23,7 @@
       <span class="text-primary text-center text-sm md:text-base font-bold">
         {{ subtitle }}
       </span>
-      <span class="text-justify text-xs md:text-sm">
+      <span class="text-justify text-xs md:text-sm px-4">
         {{ description }}
       </span>
     </div>

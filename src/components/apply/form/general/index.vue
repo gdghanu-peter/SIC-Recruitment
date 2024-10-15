@@ -174,7 +174,7 @@
           class="bg-form uppercase mt-8"
           type="submit"
           size="lg"
-          label="Hoàn thành"
+          label="Tiếp theo"
           :disabled="loading"
         />
       </div>
