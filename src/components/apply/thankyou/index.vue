@@ -8,7 +8,7 @@
         Cảm ơn em đã quan tâm và ứng tuyển vào
         <span class="text-primary italic font-medium">
           CLB Chứng khoán SIC - FTU</span
-        >.Kết quả đăng ký sẽ được gửi tới em qua địa chỉ email sau khi kết thúc
+        > .Kết quả đăng ký sẽ được gửi tới em qua địa chỉ email sau khi kết thúc
         Vòng 01.
         <br />
         Nếu có thắc mắc, hãy liên hệ với SIC qua Facebook page
