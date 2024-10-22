@@ -43,7 +43,7 @@
             </div>
             <div class="flex flex-col justify-center items-center">
                 <NuxtImg class="w-[230px] lg:w-[400px] lg:mb-4" src="/rocket.png" alt="" />
-                <ULink class="hidden lg:block" to="/ttv/choose">
+                <ULink v-if="!timeoutRegister" class="hidden lg:block" to="/ttv/choose">
                     <button
                         class="rounded-full border-2 text-[#BC0303] border-[#FFBCE6] hover:border-[#FF50E5] px-4 py-2 text-2xl font-bold">
                         ĐĂNG KÝ NGAY
@@ -83,7 +83,7 @@
                 môn, với mục tiêu đem lại cơ hội học hỏi và khám phá, đề cao tính chuyên nghiệp và khả năng bứt phá dài
                 hạn, chắp cánh cho bao hoài bão đầu tư thành hiện thực.
             </div>
-            <ULink to="/">
+            <ULink v-if="!timeoutRegister" to="/">
                 <div class="text-[#c42b2f] p-2 text-center text-xl lg:text-2xl font-bold font-montserrat">
                     ABOUT US >>
                 </div>
@@ -116,6 +116,7 @@ const items = [
 
 const carouselRef = ref()
 
+const timeoutRegister = ref(false)
 onMounted(() => {
   setInterval(() => {
     if (!carouselRef.value) return
@@ -147,6 +148,7 @@ const calculateTime = () => {
     } else {
         // Timer has expired, reset values to 0
         timeDemo.value = [0, 0, 0, 0];
+        timeoutRegister.value = true
     }
 };
 
