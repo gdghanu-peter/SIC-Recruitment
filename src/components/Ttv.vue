@@ -155,6 +155,9 @@ const calculateTime = () => {
 onMounted(() => {
     // Update every second
     calculateTime(); // Initial calculation
-    setInterval(calculateTime, 1000);
+    if(!timeoutRegister){
+        setInterval(calculateTime, 1000);
+    }
+    
 });
 </script>
